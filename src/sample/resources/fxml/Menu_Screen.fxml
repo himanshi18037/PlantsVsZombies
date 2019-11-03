@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Screen_Controller">
+   <children>
+      <ImageView fitHeight="511.0" fitWidth="875.0" layoutX="-2.0" layoutY="-1.0">
+         <image>
+            <Image url="@../images/misc/plants-vs-zombies-background-1-300x200.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="new_game_button" fitHeight="80.0" fitWidth="206.0" layoutX="54.0" layoutY="63.0" onMouseClicked="#newGame">
+         <image>
+            <Image url="@../images/buttons/button_g_new.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="further_levels" fitHeight="326.0" fitWidth="345.0" layoutX="407.0" layoutY="184.0" onMouseClicked="#levels_screen">
+         <image>
+            <Image url="@../images/misc/grave__.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="resume_game_button" fitHeight="80.0" fitWidth="206.0" layoutX="54.0" layoutY="175.0" onMouseClicked="#resumeGame">
+         <image>
+            <Image url="@../images/buttons/button_g_resume.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exit_game_button" fitHeight="80.0" fitWidth="206.0" layoutX="54.0" layoutY="295.0" onMouseClicked="#exit">
+         <image>
+            <Image url="@../images/buttons/button_g_exit.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="player" layoutX="487.0" layoutY="375.0" prefHeight="97.0" prefWidth="176.0" text="Player Name">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

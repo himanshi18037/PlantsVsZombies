@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Take_name_controller">
+   <children>
+      <ImageView fitHeight="511.0" fitWidth="875.0" layoutX="-1.0" layoutY="-1.0">
+         <image>
+            <Image url="@../images/misc/name_input.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="286.0" layoutY="22.0" prefHeight="110.0" prefWidth="365.0" text="Enter Player Name">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <TextField fx:id="name" layoutX="298.0" layoutY="132.0" prefHeight="67.0" prefWidth="260.0" />
+      <Button layoutX="319.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#passName" prefHeight="26.0" prefWidth="86.0" text="OK" />
+      <Button fx:id="back_Button" layoutX="433.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu" prefHeight="26.0" prefWidth="86.0" text="Back" />
+   </children>
+</AnchorPane>

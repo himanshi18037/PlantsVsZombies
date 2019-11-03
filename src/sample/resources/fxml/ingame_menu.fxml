@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="408.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Ingame_menu_controller">
+   <children>
+      <ImageView fitHeight="408.0" fitWidth="488.0">
+         <image>
+            <Image url="@../images/level_char_misc/Ingame.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="117.0" layoutX="173.0" layoutY="204.0" opacity="0.0">
+         <image>
+            <Image url="@../images/level_char_misc/gray_shield.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="117.0" layoutX="173.0" layoutY="232.0" opacity="0.0">
+         <image>
+            <Image url="@../images/level_char_misc/gray_shield.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="117.0" layoutX="173.0" layoutY="263.0" opacity="0.0">
+         <image>
+            <Image url="@../images/level_char_misc/gray_shield.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="191.0" layoutX="136.0" layoutY="307.0" opacity="0.0">
+         <image>
+            <Image url="@../images/level_char_misc/gray_shield.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

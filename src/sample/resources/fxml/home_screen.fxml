@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane fx:id="pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Home_Screen_Controller">
+   <children>
+      <AnchorPane fx:id="anchorPane">
+         <children>
+            <ImageView fitHeight="511.0" fitWidth="875.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/misc/mainPage.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imageView" fitHeight="42.0" fitWidth="459.0" layoutX="200.0" layoutY="437.0" onMouseClicked="#startGame" opacity="0.0">
+               <image>
+                  <Image url="@../images/level_char_misc/gray_shield.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

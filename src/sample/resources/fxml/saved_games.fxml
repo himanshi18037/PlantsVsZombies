@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Saved_Games_Controller">
+   <children>
+      <ImageView fx:id="back" fitHeight="511.0" fitWidth="875.0" layoutX="-12.0" layoutY="-6.0">
+         <image>
+            <Image url="@../images/misc/back.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="201.0" layoutX="315.0" layoutY="136.0">
+         <image>
+            <Image url="@../images/misc/button.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="275.0" layoutY="14.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <ImageView fitHeight="106.0" fitWidth="255.0" layoutX="288.0" layoutY="14.0">
+         <image>
+            <Image url="@../images/misc/images2.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="365.0" layoutY="147.0" prefHeight="22.0" prefWidth="107.0" text="himi_mathur_">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="49.0" fitWidth="201.0" layoutX="315.0" layoutY="214.0">
+         <image>
+            <Image url="@../images/misc/button.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="384.0" layoutY="228.0" prefHeight="22.0" prefWidth="69.0" text="vibhu.ag">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="49.0" fitWidth="201.0" layoutX="315.0" layoutY="294.0">
+         <image>
+            <Image url="@../images/misc/button.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="381.0" layoutY="308.0" prefHeight="22.0" prefWidth="69.0" text="nancy_b">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="back_button" fitHeight="73.0" fitWidth="138.0" layoutX="206.0" layoutY="410.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#back_to_main_menu">
+         <image>
+            <Image url="@../images/buttons/back_arrow.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

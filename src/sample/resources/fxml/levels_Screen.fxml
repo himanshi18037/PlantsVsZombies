@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Levels_Screen_Controller">
+   <children>
+      <ImageView fitHeight="511.0" fitWidth="875.0">
+         <image>
+            <Image url="@../images/levels/levels_back.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="267.0" fitWidth="242.0" layoutX="40.0" layoutY="189.0">
+         <image>
+            <Image url="@../images/misc/day_mode.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="l1" fitHeight="147.0" fitWidth="108.0" layoutX="370.0" layoutY="33.0" onMouseClicked="#getLevel1">
+         <image>
+            <Image url="@../images/levels/level1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="l2" fitHeight="147.0" fitWidth="108.0" layoutX="370.0" layoutY="298.0" onMouseClicked="#getLevel2">
+         <image>
+            <Image url="@../images/levels/level2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="l3" fitHeight="147.0" fitWidth="108.0" layoutX="542.0" layoutY="33.0" onMouseClicked="#getLevel3">
+         <image>
+            <Image url="@../images/levels/level3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="l4" fitHeight="147.0" fitWidth="108.0" layoutX="542.0" layoutY="298.0" onMouseClicked="#getLevel4">
+         <image>
+            <Image url="@../images/levels/level4.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="l5" fitHeight="147.0" fitWidth="108.0" layoutX="710.0" layoutY="174.0" onMouseClicked="#getLevel5">
+         <image>
+            <Image url="@../images/levels/level5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="363.0" layoutY="298.0">
+         <image>
+            <Image url="@../images/levels/lock_level.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="537.0" layoutY="36.0">
+         <image>
+            <Image url="@../images/levels/lock_level.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="537.0" layoutY="298.0">
+         <image>
+            <Image url="@../images/levels/lock_level.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="705.0" layoutY="179.0">
+         <image>
+            <Image url="@../images/levels/lock_level.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton" fitHeight="68.0" fitWidth="147.0" layoutX="15.0" layoutY="429.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#go_to_main_menu">
+         <image>
+            <Image url="@../images/buttons/back_arrow.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
