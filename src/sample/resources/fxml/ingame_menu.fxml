@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="408.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Ingame_menu_controller">
+<AnchorPane prefHeight="408.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.Ingame_menu_controller">
    <children>
       <ImageView fitHeight="408.0" fitWidth="488.0">
          <image>

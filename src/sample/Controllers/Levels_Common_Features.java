@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import sample.CellLocation;
+import sample.Plant;
 
 import java.io.File;
 import java.util.HashSet;
@@ -18,9 +20,40 @@ public class Levels_Common_Features {
 
     private static HashSet<ImageView> zombiesOnGrid = new HashSet<>();
     private static AnchorPane pane;
+    int level;
 
     Levels_Common_Features(AnchorPane pane){
         this.pane = pane;
+    }
+
+    public void addAPlant(Plant type, CellLocation location){
+
+        if (type != null){
+            ImageView plant = new ImageView();
+            plant.setImage(type.getImage());
+//            System.out.println(location.getX_coordinate() + " " + location.getY_coordinate());
+            plant.setX(adjustXCoordinate(location.getX_coordinate()));
+            if (level == 1) {
+                plant.setY(304);
+            }else{
+                plant.setY(location.getY_coordinate());
+            }
+            plant.setFitHeight(50);
+            plant.setFitWidth(50);
+            pane.getChildren().add(plant);
+            type.activatePlant(plant);
+        }
+    }
+
+    private double adjustXCoordinate(double x){
+        int middleRow[] = {157, 209, 259, 309, 358, 410, 460, 504, 563};
+        int i = 0;
+        for (; i<9; i++){
+            if (middleRow[i]>x)
+                break;
+        }
+
+        return middleRow[i-1] + 10;
     }
 
 
@@ -118,61 +151,6 @@ public class Levels_Common_Features {
 
         tl.setCycleCount(Timeline.INDEFINITE);
         tl.play();
-    }
-
-    public void addPlant(String name){
-        Image im = getPlantImage(name);
-
-        ImageView imageView = new ImageView();
-
-
-        imageView.setImage(im);
-
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
-
-    }
-
-    public void shootPea(ImageView plant){
-        double time = 1.5;
-        AudioClip peaThrown  = new AudioClip(new File("src/sample/resources/soundClips/peathrown.wav").toURI().toString());
-
-        Timeline tl = new Timeline();
-        tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
-
-            ImageView pea = new ImageView();
-            Image image = new Image("sample/resources/images/plants/pea.png");
-
-            pea.setImage(image);
-
-            pea.setFitWidth(15);
-            pea.setFitHeight(15);
-
-            double min_x = plant.getLayoutX() + 45;
-            int max_x = 700;
-
-            pea.setX(min_x);
-            pea.setY(plant.getLayoutY()+1);
-
-            pane.getChildren().add(pea);
-            peaThrown.play();
-
-            Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(pea.xProperty(), max_x);
-            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(7), e ->{
-
-                    if (pea.getX() > 650){
-                        pane.getChildren().remove(pea);
-                    }
-
-            }, kv));
-            timeline.play();
-
-        }));
-
-        tl.setCycleCount(Timeline.INDEFINITE);
-        tl.play();
-
     }
 
     private Image getPlantImage(String name){

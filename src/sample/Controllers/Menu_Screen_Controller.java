@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ public class Menu_Screen_Controller {
 
     public void newGame(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/take_name.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/take_name.fxml"));
             Stage stage = (Stage) resume_game_button.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -39,7 +39,7 @@ public class Menu_Screen_Controller {
 
     public void resumeGame(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/saved_games.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/saved_games.fxml"));
             Stage stage = (Stage) resume_game_button.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -55,7 +55,7 @@ public class Menu_Screen_Controller {
 
     public void levels_screen(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/levels_Screen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
             Stage stage = (Stage) resume_game_button.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

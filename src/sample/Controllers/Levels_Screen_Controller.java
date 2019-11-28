@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +27,7 @@ public class Levels_Screen_Controller {
     private void getLevel(int level_num){
         try {
             String level  = "level_" + level_num + ".fxml";
-            Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/" + level));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/" + level));
             Stage stage = (Stage) l1.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -59,7 +59,7 @@ public class Levels_Screen_Controller {
 
     public void go_to_main_menu(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/Menu_Screen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

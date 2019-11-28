@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;

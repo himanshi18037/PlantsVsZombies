@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +26,7 @@ public class Take_name_controller {
 
     private void toMainMenu(String player_name){
         try {
-            FXMLLoader fl = new FXMLLoader(getClass().getResource("resources/fxml/Menu_Screen.fxml"));
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
             Parent root = fl.load();
             if (!player_name.equals("None")){
                 ((Menu_Screen_Controller)fl.getController()).setPlayerName(player_name);

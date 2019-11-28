@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Home_Screen_Controller{
@@ -31,7 +32,7 @@ public class Home_Screen_Controller{
     @FXML
     private void startGame(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/Menu_Screen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
 
             Scene scene = imageView.getScene();
 
