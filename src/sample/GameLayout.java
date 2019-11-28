@@ -2,15 +2,26 @@ package sample;
 
 public class GameLayout {
 
-    private int level;
     private Row allRows[];
 
     public class Row{
         private Plant plantsInRow[] = new Plant[9];
+
+        Row(){
+            for (int i = 0; i<9; i++){
+                plantsInRow[i] = null;
+            }
+        }
+
+        void insertPlant(int col, Plant p){
+            if (plantsInRow[col] != null){
+                throw new CellAlreadyOccupiedException();
+            }
+            plantsInRow[col] = p;
+        }
     }
 
     public GameLayout(int level){
-        this.level = level;
 
         if (level == 1){
             allRows = new Row[1];
@@ -19,6 +30,14 @@ public class GameLayout {
         }else {
             allRows = new Row[5];
         }
+
+        for (int i = 0; i<allRows.length; i++){
+            allRows[i] = new Row();
+        }
+    }
+
+    public void addPlant(int row, int col, Plant p){
+        allRows[row].insertPlant(col, p);
     }
 
 }

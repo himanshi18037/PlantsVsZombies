@@ -9,40 +9,62 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import sample.CellAlreadyOccupiedException;
 import sample.CellLocation;
+import sample.GameLayout;
 import sample.Plant;
 
 import java.io.File;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Levels_Common_Features {
 
     private static HashSet<ImageView> zombiesOnGrid = new HashSet<>();
     private static AnchorPane pane;
-    int level;
+    private int level;
+    private GameLayout gl;
+    private static Label numSunTokens;
+
+    public void initialiseLevel(int l){
+        level = l;
+        gl = new GameLayout(level);
+    }
 
     Levels_Common_Features(AnchorPane pane){
         this.pane = pane;
     }
 
-    public void addAPlant(Plant type, CellLocation location){
+    public boolean addAPlant(Plant type, CellLocation location){
 
         if (type != null){
+            int a = ((int) (adjustXCoordinate(location.getX_coordinate()) - 10)/44) - 3;
+            if (a>3)
+                a--;
+            try{
+                gl.addPlant(0, a, type);
+            }catch (CellAlreadyOccupiedException e){
+                return false;
+            }
             ImageView plant = new ImageView();
             plant.setImage(type.getImage());
-//            System.out.println(location.getX_coordinate() + " " + location.getY_coordinate());
             plant.setX(adjustXCoordinate(location.getX_coordinate()));
             if (level == 1) {
                 plant.setY(304);
             }else{
                 plant.setY(location.getY_coordinate());
             }
+
             plant.setFitHeight(50);
             plant.setFitWidth(50);
             pane.getChildren().add(plant);
+            numSunTokens.setText( Integer.toString(Integer.parseInt(numSunTokens.getText()) - type.getCost()));
             type.activatePlant(plant);
+            return true;
         }
+
+        return false;
     }
 
     private double adjustXCoordinate(double x){
@@ -56,8 +78,22 @@ public class Levels_Common_Features {
         return middleRow[i-1] + 10;
     }
 
+    public static void checkPlantAvailability(ImageView [] allPlantsOfLevel){
+        Timeline t = new Timeline();
+        t.getKeyFrames().add(new KeyFrame(Duration.millis(50), e->{
+            if (Integer.parseInt(numSunTokens.getText()) < 100){
+                allPlantsOfLevel[0].toFront();
+            }else {
+                allPlantsOfLevel[0].toBack();
+            }
+        }));
+        t.setCycleCount(Timeline.INDEFINITE);
+        t.play();
+    }
 
     public static void droppingSun(Label toEdit){
+
+        numSunTokens = toEdit;
 
         int time = 12;
 

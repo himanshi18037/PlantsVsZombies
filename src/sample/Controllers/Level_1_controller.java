@@ -1,5 +1,10 @@
 package sample.Controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,13 +17,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import sample.CellLocation;
+import sample.GameLayout;
 import sample.PeaPlant;
 import sample.Plant;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Level_1_controller implements Initializable {
 
@@ -28,8 +40,10 @@ public class Level_1_controller implements Initializable {
     public AnchorPane pane;
     public ImageView mower_center;
     public Label num_sun;
+    public ImageView plant_cover_pea;
     private Levels_Common_Features lcf;
     private Plant currentlySelectedPlant;
+
 
 
     @Override
@@ -38,7 +52,8 @@ public class Level_1_controller implements Initializable {
         lcf.droppingSun(num_sun);
         lcf.zombie_Move(1);
         lcf.setProgress();
-        lcf.level = 1;
+        lcf.initialiseLevel(1);
+        lcf.checkPlantAvailability(new ImageView[]{plant_cover_pea});
     }
 
     public void mowDown(MouseEvent m) {
@@ -72,10 +87,19 @@ public class Level_1_controller implements Initializable {
     }
 
     public void provideLocation(MouseEvent mouseEvent) {
-        if (currentlySelectedPlant!=null)
-//            System.out.println(mouseEvent.getSceneX() + " " + mouseEvent.getSceneY());
-            lcf.addAPlant(currentlySelectedPlant, new CellLocation(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
+        boolean success = false;
+        if (currentlySelectedPlant!=null) {
+            success = lcf.addAPlant(currentlySelectedPlant, new CellLocation(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
+        }
+
+        if (success){
+            plant_cover_pea.toFront();
+            Timeline t = new Timeline();
+            t.getKeyFrames().add(new KeyFrame(Duration.seconds(currentlySelectedPlant.getWaitTime())));
+            t.play();
+            t.setOnFinished(actionEvent -> {plant_cover_pea.toBack();});
             currentlySelectedPlant = null;
+        }
 
     }
 }
