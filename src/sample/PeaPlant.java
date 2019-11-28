@@ -18,6 +18,8 @@ public class PeaPlant extends Plant{
 
     {
         super.setImage(new Image("sample/resources/images/plants/peashooter.gif"));
+        this.setWaitTime(10);
+        this.setPlantCost(100);
     }
 
     public PeaPlant(AnchorPane pane){
