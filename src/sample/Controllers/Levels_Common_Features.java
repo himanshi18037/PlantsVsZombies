@@ -9,10 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import sample.CellAlreadyOccupiedException;
-import sample.CellLocation;
-import sample.GameLayout;
-import sample.Plant;
+import sample.*;
 
 import java.io.File;
 import java.util.HashSet;
@@ -24,13 +21,24 @@ public class Levels_Common_Features {
     private static HashSet<ImageView> zombiesOnGrid = new HashSet<>();
     private static AnchorPane pane;
     private int level;
-    private GameLayout gl;
+    private static GameLayout gl;
     private static Label numSunTokens;
+    private static Shop currentShop;
+
+    public Shop.PlantTags getPlantFromShop(int num){
+        return currentShop.getPlant(num);
+    }
 
     public void initialiseLevel(int l){
         level = l;
         gl = new GameLayout(level);
+        currentShop = new Shop(level);
     }
+
+    public static HashSet<ImageView> getAllZombies(){
+        return zombiesOnGrid;
+    }
+
 
     Levels_Common_Features(AnchorPane pane){
         this.pane = pane;
@@ -84,7 +92,9 @@ public class Levels_Common_Features {
             if (Integer.parseInt(numSunTokens.getText()) < 100){
                 allPlantsOfLevel[0].toFront();
             }else {
-                allPlantsOfLevel[0].toBack();
+
+                if (currentShop.getPlant(0).getAvailabilityStatus())
+                    allPlantsOfLevel[0].toBack();
             }
         }));
         t.setCycleCount(Timeline.INDEFINITE);
@@ -160,6 +170,8 @@ public class Levels_Common_Features {
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
             ImageView zombie = new ImageView();
             zombie.setImage(new Image("sample/resources/images/zombies/Zombieidle.gif"));
+            Zombie z = new Zombie();
+            gl.addZombie(z,0);
 
             zombie.setFitHeight(76);
             zombie.setFitWidth(61);
@@ -170,6 +182,7 @@ public class Levels_Common_Features {
 
             zombie.setX(700);
             zombie.setY(y_stop_coord);
+
 
             pane.getChildren().add(zombie);
             zombiesOnGrid.add(zombie);

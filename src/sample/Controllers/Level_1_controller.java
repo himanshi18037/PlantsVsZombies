@@ -1,10 +1,9 @@
 package sample.Controllers;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
+
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -93,13 +92,17 @@ public class Level_1_controller implements Initializable {
         }
 
         if (success){
+            Plant reference = currentlySelectedPlant;
+            lcf.getPlantFromShop(currentlySelectedPlant.getShopTag()).changeAvailabilityStatus();
             plant_cover_pea.toFront();
             Timeline t = new Timeline();
             t.getKeyFrames().add(new KeyFrame(Duration.seconds(currentlySelectedPlant.getWaitTime())));
             t.play();
-            t.setOnFinished(actionEvent -> {plant_cover_pea.toBack();});
+            t.setOnFinished(actionEvent -> {
+                plant_cover_pea.toBack();
+                lcf.getPlantFromShop(reference.getShopTag()).changeAvailabilityStatus();
+            });
             currentlySelectedPlant = null;
         }
-
     }
 }
