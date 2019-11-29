@@ -9,70 +9,48 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import sample.*;
+import sample.CellLocation;
+import sample.Plant;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import java.io.File;
 import java.util.HashSet;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Levels_Common_Features {
 
     private static HashSet<ImageView> zombiesOnGrid = new HashSet<>();
     private static AnchorPane pane;
-    private int level;
-    private static GameLayout gl;
-    private static Label numSunTokens;
-    private static Shop currentShop;
-
-    public Shop.PlantTags getPlantFromShop(int num){
-        return currentShop.getPlant(num);
+    private static ArrayList<Timeline> timelinearray=new ArrayList<Timeline>();
+    public static ArrayList<Timeline> getTimeline(){
+        return timelinearray;
     }
 
-    public void initialiseLevel(int l){
-        level = l;
-        gl = new GameLayout(level);
-        currentShop = new Shop(level);
-    }
-
-    public static HashSet<ImageView> getAllZombies(){
-        return zombiesOnGrid;
-    }
-
+    int level;
 
     Levels_Common_Features(AnchorPane pane){
         this.pane = pane;
     }
 
-    public boolean addAPlant(Plant type, CellLocation location){
+    public void addAPlant(Plant type, CellLocation location){
 
         if (type != null){
-            int a = ((int) (adjustXCoordinate(location.getX_coordinate()) - 10)/44) - 3;
-            if (a>3)
-                a--;
-            try{
-                gl.addPlant(0, a, type);
-            }catch (CellAlreadyOccupiedException e){
-                return false;
-            }
             ImageView plant = new ImageView();
             plant.setImage(type.getImage());
+//            System.out.println(location.getX_coordinate() + " " + location.getY_coordinate());
             plant.setX(adjustXCoordinate(location.getX_coordinate()));
             if (level == 1) {
                 plant.setY(304);
             }else{
                 plant.setY(location.getY_coordinate());
             }
-
             plant.setFitHeight(50);
             plant.setFitWidth(50);
             pane.getChildren().add(plant);
-            numSunTokens.setText( Integer.toString(Integer.parseInt(numSunTokens.getText()) - type.getCost()));
             type.activatePlant(plant);
-            return true;
         }
-
-        return false;
     }
 
     private double adjustXCoordinate(double x){
@@ -86,24 +64,8 @@ public class Levels_Common_Features {
         return middleRow[i-1] + 10;
     }
 
-    public static void checkPlantAvailability(ImageView [] allPlantsOfLevel){
-        Timeline t = new Timeline();
-        t.getKeyFrames().add(new KeyFrame(Duration.millis(50), e->{
-            if (Integer.parseInt(numSunTokens.getText()) < 100){
-                allPlantsOfLevel[0].toFront();
-            }else {
-
-                if (currentShop.getPlant(0).getAvailabilityStatus())
-                    allPlantsOfLevel[0].toBack();
-            }
-        }));
-        t.setCycleCount(Timeline.INDEFINITE);
-        t.play();
-    }
 
     public static void droppingSun(Label toEdit){
-
-        numSunTokens = toEdit;
 
         int time = 12;
 
@@ -114,6 +76,7 @@ public class Levels_Common_Features {
         int max_stop_y = 430;
 
         Timeline tl = new Timeline();
+        timelinearray.add(tl);
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
             ImageView sun = new ImageView();
             sun.setImage(new Image("sample/resources/images/plants/sun.png"));
@@ -130,6 +93,7 @@ public class Levels_Common_Features {
             pane.getChildren().add(sun);
 
             Timeline timeline = new Timeline();
+            timelinearray.add(timeline);
             KeyValue kv = new KeyValue(sun.yProperty(), y_stop_coord);
             KeyFrame kf = new KeyFrame(Duration.seconds(6), e->{
 
@@ -167,11 +131,10 @@ public class Levels_Common_Features {
         zombiesComing.play();
 
         Timeline tl = new Timeline();
+        timelinearray.add(tl);
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
             ImageView zombie = new ImageView();
             zombie.setImage(new Image("sample/resources/images/zombies/Zombieidle.gif"));
-            Zombie z = new Zombie();
-            gl.addZombie(z,0);
 
             zombie.setFitHeight(76);
             zombie.setFitWidth(61);
@@ -183,12 +146,12 @@ public class Levels_Common_Features {
             zombie.setX(700);
             zombie.setY(y_stop_coord);
 
-
             pane.getChildren().add(zombie);
             zombiesOnGrid.add(zombie);
             zombieReleased.play();
 
             Timeline timeline = new Timeline();
+            timelinearray.add(timeline);
             KeyValue kv = new KeyValue(zombie.xProperty(), 125);
             KeyFrame kf = new KeyFrame(Duration.seconds(30),e-> {
                 zombieWalks.play();
@@ -221,6 +184,7 @@ public class Levels_Common_Features {
     public void moveLawnMower(ImageView mower){
 
         Timeline move = new Timeline();
+        timelinearray.add(move);
         KeyValue kv = new KeyValue(mower.xProperty(), 650);
         KeyFrame kf = new KeyFrame(Duration.seconds(5), mow->{
             if (mower.getX() > 600){
@@ -247,6 +211,7 @@ public class Levels_Common_Features {
         pane.getChildren().add(iv);
 
         Timeline t = new Timeline();
+        timelinearray.add(t);
 
         KeyValue kv = new KeyValue(iv.fitWidthProperty(), 240);
         t.getKeyFrames().add(new KeyFrame(Duration.minutes(3), kv));

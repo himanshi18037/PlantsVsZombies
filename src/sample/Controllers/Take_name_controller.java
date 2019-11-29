@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -13,15 +14,24 @@ import java.io.IOException;
 public class Take_name_controller {
     public Button back_Button;
     public TextField name;
+    public Label errorlabel;
+    private static String playerName;
 
     public void backToMainMenu(MouseEvent mouseEvent) {
-        toMainMenu("None");
+        toMainMenu(this.playerName);
     }
 
     public void passName(MouseEvent mouseEvent) {
 
         String player_name = name.getText();
-        toMainMenu(player_name);
+        if(player_name.equals("")){
+            errorlabel.toFront();
+        }
+        else{
+            this.playerName=player_name;
+            toMainMenu(player_name);
+        }
+
     }
 
     private void toMainMenu(String player_name){

@@ -17,12 +17,4 @@ public class CellLocation {
         return y_coordinate;
     }
 
-    public void setX_coordinate(double x){
-        x_coordinate = x;
-    }
-
-    public void setY_coordinate(double y){
-        y_coordinate = y;
-    }
-
 }
