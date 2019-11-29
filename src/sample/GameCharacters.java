@@ -5,8 +5,6 @@ import javafx.scene.image.Image;
 public abstract class GameCharacters {
     private int health;
     private int attackPower;
-    private int rowNum;
-    private int colNum;
 
     private Image image;
 
@@ -18,13 +16,6 @@ public abstract class GameCharacters {
         this.attackPower = power;
     }
 
-    protected void setRowNum(int row){
-        this.rowNum = row;
-    }
-
-    protected void setColNum(int col){
-        this.colNum = col;
-    }
 
     protected void attack(GameCharacters character){
         character.isAttacked(attackPower);
@@ -40,6 +31,10 @@ public abstract class GameCharacters {
 
     protected void setImage(Image i){
         image = i;
+    }
+
+    public int getHealth(){
+        return this.health;
     }
 
 }

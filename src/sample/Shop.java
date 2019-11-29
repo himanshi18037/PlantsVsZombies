@@ -32,5 +32,4 @@ public class Shop{
             available = !available;
         }
     }
-
 }

@@ -6,6 +6,7 @@ public abstract class Plant extends GameCharacters {
 
     private int waitTime;
     private int plantCost;
+
     private int shopTag;
 
     protected void setShopTag(int num){

@@ -1,12 +1,15 @@
 package sample.Controllers;
 
 import javafx.animation.KeyFrame;
+
 import javafx.animation.Timeline;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,13 +18,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import sample.CellLocation;
-import sample.PeaPlant;
-import sample.Plant;
+import sample.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Level_1_controller implements Initializable {
 
@@ -32,9 +38,13 @@ public class Level_1_controller implements Initializable {
     public ImageView mower_center;
     public Label num_sun;
     public ImageView plant_cover_pea;
+    public ImageView ingame;
     private Levels_Common_Features lcf;
     private Plant currentlySelectedPlant;
-
+    public Rectangle saveGame;
+    public Rectangle exit;
+    public Rectangle backtogame;
+    public Rectangle mainMenu;
 
 
     @Override
@@ -45,21 +55,19 @@ public class Level_1_controller implements Initializable {
         lcf.setProgress();
         lcf.initialiseLevel(1);
         lcf.checkPlantAvailability(new ImageView[]{plant_cover_pea});
+        lcf.setLawnMowers(new LawnMower[]{new LawnMower(mower_center)});
     }
 
-    public void mowDown(MouseEvent m) {
-        lcf.moveLawnMower(mower_center);
-    }
 
-    public void invokeMenu(MouseEvent mouseEvent) throws IOException, InterruptedException {
-        Parent pause_screen = FXMLLoader.load(getClass().getResource("../resources/fxml/ingame_menu.fxml"));
-        Stage pause = new Stage();
-        pause.initModality(Modality.APPLICATION_MODAL);
-        pause.initOwner(menu_b.getScene().getWindow());
-        pause.setTitle("Pause Menu");
-        pause.setScene(new Scene(pause_screen));
-
-        pause.show();
+    public void invokeMenu(MouseEvent mouseEvent){
+        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+            Levels_Common_Features.getTimeline().get(i).pause();
+        }
+        ingame.toFront();
+        saveGame.toFront();
+        exit.toFront();
+        backtogame.toFront();
+        mainMenu.toFront();
 
     }
 
@@ -88,6 +96,7 @@ public class Level_1_controller implements Initializable {
             lcf.getPlantFromShop(currentlySelectedPlant.getShopTag()).changeAvailabilityStatus();
             plant_cover_pea.toFront();
             Timeline t = new Timeline();
+            Levels_Common_Features.getTimeline().add(t);
             t.getKeyFrames().add(new KeyFrame(Duration.seconds(currentlySelectedPlant.getWaitTime())));
             t.play();
             t.setOnFinished(actionEvent -> {
@@ -97,4 +106,36 @@ public class Level_1_controller implements Initializable {
             currentlySelectedPlant = null;
         }
     }
+    public void backtogame(MouseEvent mouseEvent) {
+        ingame.toBack();
+        saveGame.toBack();
+        exit.toBack();
+        backtogame.toBack();
+        mainMenu.toBack();
+        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+            Levels_Common_Features.getTimeline().get(i).play();
+        }
+
+
+    }
+
+    public void saveGame(MouseEvent mouseEvent) {
+    }
+
+    public void mainMenu(MouseEvent mouseEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
+            Stage stage = (Stage) mainMenu.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        }catch (IOException e){
+
+        }
+    }
+
+
+    public void exit(MouseEvent mouseEvent) {
+    }
+
 }

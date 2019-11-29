@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -25,6 +24,7 @@ public class PeaPlant extends Plant{
         super.setImage(new Image("sample/resources/images/plants/peashooter.gif"));
         this.setWaitTime(10);
         this.setPlantCost(100);
+
         this.setShopTag(0);
     }
 
@@ -43,6 +43,7 @@ public class PeaPlant extends Plant{
         AudioClip peaThrown  = new AudioClip(new File("src/sample/resources/soundClips/peathrown.wav").toURI().toString());
 
         Timeline tl = new Timeline();
+        Levels_Common_Features.getTimeline().add(tl);
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
 
             ImageView pea = new ImageView();
@@ -66,19 +67,26 @@ public class PeaPlant extends Plant{
            peaThrown.play();
 
             Timeline timeline = new Timeline();
+            Levels_Common_Features.getTimeline().add(timeline);
             KeyValue kv = new KeyValue(pea.xProperty(), max_x);
             timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(7), e ->{
 
-                HashSet<ImageView> allZombies = Levels_Common_Features.getAllZombies();
+                HashSet<Zombie> allZombies = Levels_Common_Features.getAllZombies();
 
                 ArrayList<PeaShots> toRemove;
 
-                for (ImageView z: allZombies){
+                for (Zombie z: allZombies){
                     toRemove = new ArrayList<PeaShots>();
                     for (PeaShots ps: allShots) {
-                        if (z.intersects(ps.getPea().getLayoutBounds())) {
+                        if (z.checkIfAlive() && z.getLinkedGUIZombie().intersects(ps.getPea().getLayoutBounds())) {
                             pane.getChildren().remove(ps.getPea());
                             toRemove.add(ps);
+                            z.isAttacked(1);
+
+                            if (z.getHealth() == 0){
+                                pane.getChildren().remove(z.getLinkedGUIZombie());
+                                z.killZombie();
+                            }
                             break;
                         }
                     }for (int i = 0; i<toRemove.size(); i++){

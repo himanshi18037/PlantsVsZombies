@@ -6,24 +6,25 @@ public class GameLayout {
 
     private Row allRows[];
 
-    public class Row{
+    public class Row {
         private Plant plantsInRow[] = new Plant[9];
+
         private ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
 
-        Row(){
-            for (int i = 0; i<9; i++){
+        Row() {
+            for (int i = 0; i < 9; i++) {
                 plantsInRow[i] = null;
             }
         }
 
-        void insertPlant(int col, Plant p){
-            if (plantsInRow[col] != null){
+        void insertPlant(int col, Plant p) {
+            if (plantsInRow[col] != null) {
                 throw new CellAlreadyOccupiedException();
             }
             plantsInRow[col] = p;
         }
 
-        void addZombie(Zombie z){
+        void addZombie(Zombie z) {
             allZombies.add(z);
         }
     }
@@ -48,6 +49,7 @@ public class GameLayout {
     }
     public void addZombie(Zombie z, int row){
         allRows[row].addZombie(z);
+
     }
 
 }

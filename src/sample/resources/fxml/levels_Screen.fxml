@@ -41,22 +41,22 @@
             <Image url="@../images/levels/level5.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="363.0" layoutY="298.0">
+      <ImageView fx:id="level2_cover" fitHeight="153.0" fitWidth="118.0" layoutX="363.0" layoutY="298.0">
          <image>
             <Image url="@../images/levels/lock_level.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="537.0" layoutY="36.0">
+      <ImageView fx:id="level3_cover" fitHeight="153.0" fitWidth="118.0" layoutX="537.0" layoutY="36.0">
          <image>
             <Image url="@../images/levels/lock_level.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="537.0" layoutY="298.0">
+      <ImageView fx:id="level4_cover" fitHeight="153.0" fitWidth="118.0" layoutX="537.0" layoutY="298.0">
          <image>
             <Image url="@../images/levels/lock_level.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="153.0" fitWidth="118.0" layoutX="705.0" layoutY="179.0">
+      <ImageView fx:id="level5_cover" fitHeight="153.0" fitWidth="118.0" layoutX="705.0" layoutY="179.0">
          <image>
             <Image url="@../images/levels/lock_level.png" />
          </image>
