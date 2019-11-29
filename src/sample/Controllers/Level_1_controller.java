@@ -1,10 +1,7 @@
 package sample.Controllers;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,18 +16,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.CellLocation;
-import sample.GameLayout;
 import sample.PeaPlant;
 import sample.Plant;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Level_1_controller implements Initializable {
 
@@ -93,13 +84,17 @@ public class Level_1_controller implements Initializable {
         }
 
         if (success){
+            Plant reference = currentlySelectedPlant;
+            lcf.getPlantFromShop(currentlySelectedPlant.getShopTag()).changeAvailabilityStatus();
             plant_cover_pea.toFront();
             Timeline t = new Timeline();
             t.getKeyFrames().add(new KeyFrame(Duration.seconds(currentlySelectedPlant.getWaitTime())));
             t.play();
-            t.setOnFinished(actionEvent -> {plant_cover_pea.toBack();});
+            t.setOnFinished(actionEvent -> {
+                plant_cover_pea.toBack();
+                lcf.getPlantFromShop(reference.getShopTag()).changeAvailabilityStatus();
+            });
             currentlySelectedPlant = null;
         }
-
     }
 }

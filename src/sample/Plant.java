@@ -6,6 +6,15 @@ public abstract class Plant extends GameCharacters {
 
     private int waitTime;
     private int plantCost;
+    private int shopTag;
+
+    protected void setShopTag(int num){
+        shopTag = num;
+    }
+
+    public int getShopTag(){
+        return shopTag;
+    }
 
     protected void setWaitTime(int time){
         this.waitTime = time;
@@ -14,6 +23,7 @@ public abstract class Plant extends GameCharacters {
     protected void setPlantCost(int cost){
         plantCost = cost;
     }
+
     public int getCost(){
         return plantCost;
     }

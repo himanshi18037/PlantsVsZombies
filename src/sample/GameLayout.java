@@ -1,11 +1,14 @@
 package sample;
 
+import java.util.ArrayList;
+
 public class GameLayout {
 
     private Row allRows[];
 
     public class Row{
         private Plant plantsInRow[] = new Plant[9];
+        private ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
 
         Row(){
             for (int i = 0; i<9; i++){
@@ -18,6 +21,10 @@ public class GameLayout {
                 throw new CellAlreadyOccupiedException();
             }
             plantsInRow[col] = p;
+        }
+
+        void addZombie(Zombie z){
+            allZombies.add(z);
         }
     }
 
@@ -38,6 +45,9 @@ public class GameLayout {
 
     public void addPlant(int row, int col, Plant p){
         allRows[row].insertPlant(col, p);
+    }
+    public void addZombie(Zombie z, int row){
+        allRows[row].addZombie(z);
     }
 
 }
