@@ -8,6 +8,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.Menu_Screen_Controller">
    <children>
+      <Label fx:id="nonamelabel" layoutX="390.0" layoutY="69.0" prefHeight="89.0" prefWidth="206.0" text="Please enter a valid name to play!" wrapText="true">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
       <ImageView fitHeight="511.0" fitWidth="875.0" layoutX="-2.0" layoutY="-1.0">
          <image>
             <Image url="@../images/misc/plants-vs-zombies-background-1-300x200.png" />

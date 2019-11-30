@@ -134,6 +134,18 @@ public class Level_4_Controllers implements Initializable {
     }
 
     public void exit(MouseEvent mouseEvent) {
+        try {
+            for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+                Levels_Common_Features.getTimeline().get(i).stop();
+            }
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_4.fxml" ));
+            Stage stage = (Stage) pane4.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        }catch (IOException e){
+
+        }
     }
 
     public void backtogame(MouseEvent mouseEvent) {

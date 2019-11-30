@@ -135,7 +135,18 @@ public class Level_1_controller implements Initializable {
     }
 
 
-    public void exit(MouseEvent mouseEvent) {
-    }
+    public void restartLevel(MouseEvent mouseEvent) {
+        try {
+            for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+                Levels_Common_Features.getTimeline().get(i).stop();
+            }
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_1.fxml" ));
+            Stage stage = (Stage) pane.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
+        }catch (IOException e){
+
+        }
+    }
 }

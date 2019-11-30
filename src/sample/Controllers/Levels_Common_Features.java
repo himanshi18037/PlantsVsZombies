@@ -313,6 +313,7 @@ public class Levels_Common_Features {
         Timeline t = new Timeline();
         Levels_Common_Features.getTimeline().add(t);
         checker = t;
+        Levels_Common_Features.getTimeline().add(checker);
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), check->{
             for (Zombie z: getAllZombies()) {
                 if (z.checkIfAlive())

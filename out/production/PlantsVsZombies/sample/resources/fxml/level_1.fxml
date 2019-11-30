@@ -16,7 +16,7 @@
       </ImageView>
       <Rectangle fx:id="saveGame" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="397.0" layoutY="256.0" onMouseClicked="#saveGame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
       <Rectangle fx:id="mainMenu" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="397.0" layoutY="281.0" onMouseClicked="#mainMenu" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
-      <Rectangle fx:id="exit" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="397.0" layoutY="307.0" onMouseClicked="#exit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
+      <Rectangle fx:id="exit" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="397.0" layoutY="307.0" onMouseClicked="#restartLevel" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
       <Rectangle fx:id="backtogame" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="364.0" layoutY="347.0" onMouseClicked="#backtogame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="171.0" />
       <ImageView fx:id="plant_cover_pea" fitHeight="98.0" fitWidth="71.0" layoutX="100.0" layoutY="11.0" opacity="0.55">
          <image>

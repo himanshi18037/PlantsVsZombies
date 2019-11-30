@@ -136,6 +136,18 @@ public class Level_3_controller implements Initializable {
     }
 
     public void exit(MouseEvent mouseEvent) {
+        try {
+            for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+                Levels_Common_Features.getTimeline().get(i).stop();
+            }
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_3.fxml" ));
+            Stage stage = (Stage) pane3.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        }catch (IOException e){
+
+        }
     }
 
     public void ingame(MouseEvent mouseEvent) {
