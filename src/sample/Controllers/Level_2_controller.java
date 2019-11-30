@@ -84,7 +84,6 @@ public class Level_2_controller implements Initializable {
     public void provideLocation(MouseEvent mouseEvent) {
         boolean success = false;
         if (currentlySelectedPlant!=null) {
-           // System.out.println(mouseEvent.getSceneX() + " " + mouseEvent.getSceneY());
             success = lcf.addAPlant(currentlySelectedPlant, new CellLocation(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
         }
 
@@ -124,7 +123,6 @@ public class Level_2_controller implements Initializable {
     }
 
     public void saveGame(MouseEvent mouseEvent) {
-//        System.out.println("sdfdghgj");
     }
 
     public void mainMenu(MouseEvent mouseEvent) {
@@ -133,7 +131,6 @@ public class Level_2_controller implements Initializable {
             Stage stage = (Stage) mainMenu.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-//            System.out.println("weregtrhtjfbgfg");
 
         }catch (IOException e){
 

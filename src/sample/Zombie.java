@@ -39,6 +39,7 @@ public class Zombie extends GameCharacters{
 
     public void killZombie(){
         isAlive = false;
+        walking.stop();
     }
 
     public boolean attackAPlant(Plant p){

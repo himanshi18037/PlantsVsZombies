@@ -45,10 +45,7 @@ public class Level_3_controller implements Initializable {
         lcf.initialiseLevel(3);
         lcf.checkPlantAvailability(allPlantCovers);
     }
-    public void mowDown(MouseEvent m) {
-        lcf.moveLawnMower(movercenter);
-//        correct it
-    }
+
     public void highlightCell(MouseEvent mouseEvent) {
         Rectangle iv  = (Rectangle)(mouseEvent.getSource());
         iv.setOpacity(100);

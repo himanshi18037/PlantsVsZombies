@@ -30,6 +30,15 @@ public class GameLayout {
         public Plant[] getPlantsInRow(){
             return plantsInRow;
         }
+
+        void removePlant(Plant p){
+            for (int i = 0; i<9; i++){
+                if (plantsInRow[i] == p){
+                    plantsInRow[i] = null;
+                    break;
+                }
+            }
+        }
     }
 
     public GameLayout(int level){
@@ -53,6 +62,10 @@ public class GameLayout {
     public void addZombie(Zombie z, int row){
         allRows[row].addZombie(z);
 
+    }
+
+    public void removePlant(int row, Plant p){
+        allRows[row].removePlant(p);
     }
 
     public Plant[] getAllPlantsInRow(int x){

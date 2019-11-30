@@ -1,5 +1,6 @@
 package sample.Controllers;
 
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -174,7 +175,7 @@ public class Levels_Common_Features {
 
         numSunTokens = toEdit;
 
-        int time = 12;
+        int time = 10;
 
         int min_x = 125;
         int max_x = 560;
@@ -202,7 +203,7 @@ public class Levels_Common_Features {
             Timeline timeline = new Timeline();
             timelinearray.add(timeline);
             KeyValue kv = new KeyValue(sun.yProperty(), y_stop_coord);
-            KeyFrame kf = new KeyFrame(Duration.seconds(6), e->{
+            KeyFrame kf = new KeyFrame(Duration.seconds(4), e->{
 
                 sun.setOnMouseClicked(clicked->{
                     pane.getChildren().remove(sun);
@@ -227,7 +228,7 @@ public class Levels_Common_Features {
         if (level == 1){
             y_pos = new int[]{269};
         }else if (level == 2 || level == 3){
-            y_pos = new int[]{206, 269, 338};
+            y_pos = new int[]{204, 269, 338};
         }else {
             y_pos = new int[]{147, 206, 269, 338, 403};
         }
@@ -273,7 +274,7 @@ public class Levels_Common_Features {
                     if (zombie.getX() <= 125 && z.checkIfAlive()) {
                         if (!lawnMowers[z.getLane()-1].getActiveStatus()){
                             lawnMowers[z.getLane()-1].changeActiveStatus();
-                            moveLawnMower(lawnMowers[z.getLane()-1].getLawnMower());
+                            moveLawnMower(lawnMowers[z.getLane()-1], z.getLane());
                         }else if (z.checkIfAlive()){
                             throw new HomeInvadedException();
                         }
@@ -326,15 +327,16 @@ public class Levels_Common_Features {
         }
     }
 
-    public void moveLawnMower(ImageView mower){
+    public void moveLawnMower(LawnMower mower, int lane){
 
+        ImageView mowerImg = mower.getLawnMower();
         Timeline move = new Timeline();
         timelinearray.add(move);
-        KeyValue kv = new KeyValue(mower.xProperty(), 650);
+        KeyValue kv = new KeyValue(mowerImg.xProperty(), 650);
         KeyFrame kf = new KeyFrame(Duration.seconds(7), mow->{
 
-            if (mower.getX() > 600){
-                pane.getChildren().remove(mower);
+            if (mowerImg.getX() > 600){
+                pane.getChildren().remove(mowerImg);
             }
         }, kv);
 
@@ -343,9 +345,11 @@ public class Levels_Common_Features {
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), mow->{
 
             for (Zombie zb: zombiesOnGrid){
-                if (zb.checkIfAlive() && zb.getLinkedGUIZombie().intersects(mower.getBoundsInParent())){
+
+                if (zb.checkIfAlive() && zb.getLane() == lane && zb.getLinkedGUIZombie().intersects(mowerImg.getBoundsInParent())){
                     pane.getChildren().remove(zb.getLinkedGUIZombie());
                     zb.killZombie();
+                    zb.getWalking().stop();
                 }
             }
         });
@@ -400,6 +404,9 @@ public class Levels_Common_Features {
     private void gameLost(){
         try {
             checker.stop();
+            for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+                Levels_Common_Features.getTimeline().get(i).stop();
+            }
             Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/gameOverScreen.fxml"));
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -414,7 +421,7 @@ public class Levels_Common_Features {
         int row = z.getLane();
         Plant[] allCurrent  = gl.getAllPlantsInRow(row-1);
         for (Plant p: allCurrent){
-            if (p!=null && p.getPlantIm().intersects(z.getLinkedGUIZombie().getBoundsInLocal())){
+            if (p!=null && p.getAliveStatus() && p.getPlantIm().intersects(z.getLinkedGUIZombie().getBoundsInLocal())){
                 z.getWalking().pause();
              //   KeyFrame k = new KeyFrame(Duration.seconds(1));
              //   z.getWalking().getKeyFrames().add(k);
@@ -422,12 +429,12 @@ public class Levels_Common_Features {
                 if (won){
                     z.getWalking().play();
                     p.killPlant();
+                    gl.removePlant(z.getLane()-1,p);
+
                 }else{
                     z.getWalking().stop();
                     z.killZombie();
-                    z.getWalking().setOnFinished(e->{
-                        pane.getChildren().remove(z.getLinkedGUIZombie());
-                    });
+                    pane.getChildren().remove(z.getLinkedGUIZombie());
                 }
             }
         }

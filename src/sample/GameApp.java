@@ -15,11 +15,12 @@ public class GameApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/level_2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/home_screen.fxml"));
         primaryStage.setTitle("Plants Vs Zombies");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
+        clip1.setCycleCount(-1);
         clip1.play();
 
     }

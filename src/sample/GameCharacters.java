@@ -22,9 +22,11 @@ public abstract class GameCharacters {
         int a2 = character.health - this.attackPower;
 
         if (a1>a2){
+            this.health = a1;
             return 1;
         }
 
+        character.health = a2;
         return 2;
     }
 
