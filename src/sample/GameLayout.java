@@ -27,6 +27,9 @@ public class GameLayout {
         void addZombie(Zombie z) {
             allZombies.add(z);
         }
+        public Plant[] getPlantsInRow(){
+            return plantsInRow;
+        }
     }
 
     public GameLayout(int level){
@@ -50,6 +53,10 @@ public class GameLayout {
     public void addZombie(Zombie z, int row){
         allRows[row].addZombie(z);
 
+    }
+
+    public Plant[] getAllPlantsInRow(int x){
+        return allRows[x].getPlantsInRow();
     }
 
 }

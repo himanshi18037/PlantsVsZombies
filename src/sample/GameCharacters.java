@@ -17,8 +17,15 @@ public abstract class GameCharacters {
     }
 
 
-    protected void attack(GameCharacters character){
-        character.isAttacked(attackPower);
+    protected int attack(GameCharacters character){
+        int a1 = this.health - character.attackPower;
+        int a2 = character.health - this.attackPower;
+
+        if (a1>a2){
+            return 1;
+        }
+
+        return 2;
     }
 
     protected void isAttacked(int pow){

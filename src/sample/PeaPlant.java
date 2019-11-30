@@ -16,16 +16,16 @@ import java.util.HashSet;
 
 public class PeaPlant extends Plant{
 
-    private AnchorPane pane;
-    private ImageView plant;
+
     private ArrayList<PeaShots> allShots = new ArrayList<PeaShots>();
 
     {
         super.setImage(new Image("sample/resources/images/plants/peashooter.gif"));
         this.setWaitTime(10);
         this.setPlantCost(100);
-
+        this.setAttackPower(2);
         this.setShopTag(0);
+        this.setHealth(5);
     }
 
     public PeaPlant(AnchorPane pane){
@@ -39,10 +39,11 @@ public class PeaPlant extends Plant{
     }
 
     public void shootPea(){
-        double time = 1.5;
+        double time = 2;
         AudioClip peaThrown  = new AudioClip(new File("src/sample/resources/soundClips/peathrown.wav").toURI().toString());
 
         Timeline tl = new Timeline();
+        this.working = tl;
         Levels_Common_Features.getTimeline().add(tl);
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
 
@@ -78,12 +79,12 @@ public class PeaPlant extends Plant{
                 for (Zombie z: allZombies){
                     toRemove = new ArrayList<PeaShots>();
                     for (PeaShots ps: allShots) {
-                        if (z.checkIfAlive() && z.getLinkedGUIZombie().intersects(ps.getPea().getLayoutBounds())) {
+                        if (z.checkIfAlive() && z.getLinkedGUIZombie().intersects(ps.getPea().getBoundsInParent())) {
                             pane.getChildren().remove(ps.getPea());
                             toRemove.add(ps);
                             z.isAttacked(1);
 
-                            if (z.getHealth() == 0){
+                            if (z.getHealth() <= 0){
                                 pane.getChildren().remove(z.getLinkedGUIZombie());
                                 z.killZombie();
                             }
