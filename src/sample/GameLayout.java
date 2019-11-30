@@ -1,12 +1,46 @@
 package sample;
 
+import sample.Controllers.Levels_Common_Features;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GameLayout {
+public class GameLayout implements Serializable {
 
     private Row allRows[];
+    private LawnMower mowers[];
+    private int numSunTokens;
 
-    public class Row {
+    public void updateZombieLocations() {
+        for (int i = 0; i<allRows.length; i++){
+            ArrayList<Zombie> allZb =  allRows[i].getAllZombies();
+
+            for (Zombie z: allZb){
+                if (z.checkIfAlive()){
+                    z.setLocation(z.getLinkedGUIZombie().getX(), z.getLinkedGUIZombie().getY());
+                }
+            }
+        }
+    }
+
+    public void updatePlantLocations() {
+        for (int i = 0; i<allRows.length; i++){
+            Plant[] allPlants = allRows[i].getPlants();
+
+            for (Plant p: allPlants){
+                if (p!=null && p.getAliveStatus()){
+                    p.setLocation(p.getPlantIm().getX(), p.getPlantIm().getY());
+                }
+            }
+        }
+
+    }
+
+    public void updateSunTokens() {
+        numSunTokens = Integer.parseInt(Levels_Common_Features.getNumSunTokens().getText());
+    }
+
+    public class Row implements Serializable{
         private Plant plantsInRow[] = new Plant[9];
 
         private ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
@@ -15,6 +49,10 @@ public class GameLayout {
             for (int i = 0; i < 9; i++) {
                 plantsInRow[i] = null;
             }
+        }
+
+        Plant[] getPlants(){
+            return plantsInRow;
         }
 
         void insertPlant(int col, Plant p) {
@@ -39,6 +77,11 @@ public class GameLayout {
                 }
             }
         }
+
+        ArrayList<Zombie> getAllZombies(){
+            return allZombies;
+        }
+
     }
 
     public GameLayout(int level){
@@ -76,6 +119,10 @@ public class GameLayout {
         for (int i = 0; i<allRows.length; i++){
             allRows[i].removePlant(p);
         }
+    }
+
+    public void setMowers(LawnMower[] lm){
+        mowers = lm;
     }
 
 }

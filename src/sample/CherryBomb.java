@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Cell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +29,7 @@ public class CherryBomb extends Plant{
     @Override
     public void activatePlant(ImageView plant) {
         this.plant=plant;
+        this.location = new CellLocation(plant.getX(), plant.getY());
         this.burst();
     }
 

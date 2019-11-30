@@ -2,11 +2,13 @@ package sample;
 
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 
-public class PeaShots {
+
+public class PeaShots implements Serializable {
 
     private CellLocation location;
-    private ImageView imageView;
+    private transient ImageView imageView;
 
     public PeaShots(CellLocation l, ImageView iv){
         location = l;

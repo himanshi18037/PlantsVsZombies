@@ -2,11 +2,17 @@ package sample;
 
 import javafx.scene.image.Image;
 
-public abstract class GameCharacters {
+import java.io.Serializable;
+
+public abstract class GameCharacters implements Serializable {
     private int health;
     private int attackPower;
+    protected CellLocation location;
+    private transient Image image;
 
-    private Image image;
+    public void setLocation(double x, double y){
+        location = new CellLocation(x,y);
+    }
 
     protected void setHealth(int health){
         this.health = health;

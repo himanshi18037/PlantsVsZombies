@@ -6,19 +6,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import javax.xml.stream.Location;
+import java.rmi.registry.LocateRegistry;
+
 public abstract class Plant extends GameCharacters {
 
     private int waitTime;
     private int plantCost;
-    private ImageView plantIm;
+    private transient ImageView plantIm;
     private int shopTag;
     private boolean isAlive = true;
-    protected Timeline working;
-    protected AnchorPane pane;
-    protected ImageView plant;
+    protected transient Timeline working;
+    protected transient AnchorPane pane;
+    protected transient ImageView plant;
 
     public void setPlantIm(ImageView i){
         plantIm = i;
+        location = new CellLocation(i.getX(), i.getY());
     }
 
     public ImageView getPlantIm(){

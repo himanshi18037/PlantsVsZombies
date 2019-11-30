@@ -119,11 +119,18 @@ public class Level_1_controller implements Initializable {
 
     }
 
-    public void saveGame(MouseEvent mouseEvent) {
+    public void saveGame(MouseEvent mouseEvent) throws IOException {
+        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+            Levels_Common_Features.getTimeline().get(i).stop();
+        }
+        GameApp.saveGame();
     }
 
     public void mainMenu(MouseEvent mouseEvent) {
         try {
+            for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+                Levels_Common_Features.getTimeline().get(i).stop();
+            }
             Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
             Stage stage = (Stage) mainMenu.getScene().getWindow();
             stage.setScene(new Scene(root));

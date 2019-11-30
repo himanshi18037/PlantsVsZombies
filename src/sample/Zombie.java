@@ -5,10 +5,10 @@ import javafx.scene.image.ImageView;
 
 public class Zombie extends GameCharacters{
 
-    private ImageView linkedGUIZombie;
+    private transient ImageView linkedGUIZombie;
     private boolean isAlive = true;
     private int laneNum;
-    private Timeline walking;
+    private transient Timeline walking;
 
     public Zombie(ImageView iv, int num){
         this.setHealth(8);

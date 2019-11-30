@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import sample.Controllers.Levels_Common_Features;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Stone extends Plant{

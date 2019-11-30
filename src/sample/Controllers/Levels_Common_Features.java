@@ -27,7 +27,7 @@ public class Levels_Common_Features {
 
     private static HashSet<Zombie> zombiesOnGrid = new HashSet<>();
     private static AnchorPane pane;
-    private int level;
+    private static int level;
     private static GameLayout gl;
     private static Label numSunTokens;
     private static Shop currentShop;
@@ -40,6 +40,10 @@ public class Levels_Common_Features {
     }
     public static GameLayout getGl(){
         return gl;
+    }
+
+    public static int getLevel(){
+        return level;
     }
    
     public static ArrayList<Timeline> getTimeline(){
@@ -58,6 +62,7 @@ public class Levels_Common_Features {
 
     public void setLawnMowers(LawnMower[] lm){
         lawnMowers = lm;
+        gl.setMowers(lm);
     }
 
     public static HashSet<Zombie> getAllZombies(){

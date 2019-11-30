@@ -2,10 +2,12 @@ package sample;
 
 import javafx.scene.image.ImageView;
 
-public class LawnMower {
+import java.io.Serializable;
+
+public class LawnMower implements Serializable {
 
     private boolean activeStatus = false;
-    private ImageView mower;
+    private transient ImageView mower;
 
     public LawnMower(ImageView m){
         mower = m;

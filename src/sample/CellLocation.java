@@ -1,6 +1,8 @@
 package sample;
 
-public class CellLocation {
+import java.io.Serializable;
+
+public class CellLocation implements Serializable {
     private double x_coordinate;
     private double y_coordinate;
 
