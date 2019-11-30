@@ -1,22 +1,19 @@
 package sample;
 
-import com.sun.javafx.collections.MappingChange;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import sample.Controllers.Levels_Common_Features;
-import sample.Controllers.Levels_Screen_Controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CherryBomb extends Plant{
 
-    private AnchorPane pane;
-    private ImageView plant;
+
     {
         super.setImage(new Image("sample/resources/images/plants/cherry_bomb.png"));
         this.setWaitTime(10);
@@ -57,16 +54,19 @@ public class CherryBomb extends Plant{
             pane.getChildren().add(cherry);
 
             Timeline t = new Timeline();
+            Levels_Common_Features.getTimeline().add(t);
 
             KeyFrame kf = new KeyFrame(Duration.seconds(1), e->{
-               // System.out.println("Executing  ");
+
                 HashSet<Zombie> allZombies = Levels_Common_Features.getAllZombies();
                 for (Zombie z: allZombies){
                     if (Math.abs(z.getLinkedGUIZombie().getX() - min_x)<75 && Math.abs(z.getLinkedGUIZombie().getY() - cherry.getY())<75){
                         z.killZombie();
                         pane.getChildren().remove(z.getLinkedGUIZombie());
+
                     }
                 }
+
             });
 
             t.getKeyFrames().add(kf);

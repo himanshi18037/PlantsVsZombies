@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Level_3_controller implements Initializable {
+    public ImageView menu;
     private Levels_Common_Features lcf;
     public AnchorPane pane3;
     public Label pointslabel;
@@ -136,5 +137,15 @@ public class Level_3_controller implements Initializable {
 
     public void exit(MouseEvent mouseEvent) {
     }
-    
+
+    public void ingame(MouseEvent mouseEvent) {
+        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+            Levels_Common_Features.getTimeline().get(i).pause();
+        }
+        ingame.toFront();
+        saveGame.toFront();
+        exit.toFront();
+        backtogame.toFront();
+        mainMenu.toFront();
+    }
 }

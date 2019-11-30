@@ -72,9 +72,20 @@ public class PeaPlant extends Plant{
             KeyValue kv = new KeyValue(pea.xProperty(), max_x);
             timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(7), e ->{
 
+                if (pea.getX() > 650){
+                    pane.getChildren().remove(pea);
+                }
+
+            }, kv));
+
+            Timeline tl1 = new Timeline();
+            Levels_Common_Features.getTimeline().add(tl1);
+            KeyFrame check = new KeyFrame(Duration.seconds(1), e->{
                 HashSet<Zombie> allZombies = Levels_Common_Features.getAllZombies();
 
                 ArrayList<PeaShots> toRemove;
+
+
 
                 for (Zombie z: allZombies){
                     toRemove = new ArrayList<PeaShots>();
@@ -87,6 +98,7 @@ public class PeaPlant extends Plant{
                             if (z.getHealth() <= 0){
                                 pane.getChildren().remove(z.getLinkedGUIZombie());
                                 z.killZombie();
+
                             }
                             break;
                         }
@@ -95,11 +107,10 @@ public class PeaPlant extends Plant{
                     }
                 }
 
-                if (pea.getX() > 650){
-                    pane.getChildren().remove(pea);
-                }
 
-            }, kv));
+            });
+            tl1.getKeyFrames().add(check);
+            tl1.play();
             timeline.play();
 
         }));

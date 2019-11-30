@@ -20,7 +20,7 @@
             <image>
                 <Image url="@../images/level_char_misc/gray_shield.png" />
             </image>
-        </ImageView><ImageView fx:id="ingamebutton" fitHeight="377.0" fitWidth="403.0" layoutX="259.0" layoutY="67.0">
+        </ImageView><ImageView fx:id="ingame" fitHeight="377.0" fitWidth="403.0" layoutX="259.0" layoutY="67.0">
         <image>
             <Image url="@../images/level_char_misc/Ingame.png" />
         </image>
@@ -54,7 +54,7 @@
                 <Image url="@../images/level_char_misc/Lawn_mower.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="79.0" fitWidth="230.0" layoutX="638.0" layoutY="-1.0">
+        <ImageView fx:id="menu" fitHeight="79.0" fitWidth="230.0" layoutX="638.0" layoutY="-1.0" onMouseClicked="#ingame">
             <image>
                 <Image url="@../images/buttons/menu_button.png" />
             </image>

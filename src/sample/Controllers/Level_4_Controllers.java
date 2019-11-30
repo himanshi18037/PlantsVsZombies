@@ -76,7 +76,7 @@ public class Level_4_Controllers implements Initializable {
     public void placestoneplant(MouseEvent mouseEvent) { currentlySelectedPlant=new Stone(pane4);
     }
     public void placepeaplant(MouseEvent mouseEvent) {
-        currentlySelectedPlant = new PeaPlant(pane4);System.out.println("ngbvfcxsacdsvfdbgf");
+        currentlySelectedPlant = new PeaPlant(pane4);
     }
     public void placebombplant(MouseEvent mouseEvent) {
         currentlySelectedPlant = new CherryBomb(pane4);
@@ -84,8 +84,7 @@ public class Level_4_Controllers implements Initializable {
 
     public void provideLocation(MouseEvent mouseEvent) {
         boolean success = false;
-//        System.out.println(currentlySelectedPlant);
-        if (currentlySelectedPlant!=null) {
+       if (currentlySelectedPlant!=null) {
             success = lcf.addAPlant(currentlySelectedPlant, new CellLocation(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
         }
 
@@ -101,8 +100,8 @@ public class Level_4_Controllers implements Initializable {
                 cover = allPlantCovers[1];
             }
             else if (currentlySelectedPlant.getClass().equals(CherryBomb.class)){
-                cover=allPlantCovers[2]; }
-            else{
+                cover=allPlantCovers[2];
+            }else{
                 cover=allPlantCovers[3];
             }
 
@@ -125,7 +124,6 @@ public class Level_4_Controllers implements Initializable {
             Stage stage = (Stage) mainMenu.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-//            System.out.println("weregtrhtjfbgfg");
 
         }catch (IOException e){
 

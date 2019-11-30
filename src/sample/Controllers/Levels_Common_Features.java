@@ -117,14 +117,17 @@ public class Levels_Common_Features {
     private double adjustYCoordinate(double y){
         int decideRow[] = {169, 232, 298, 362, 426};
 
-        if (y>239 && y<=298){
+        if (y>=174 && y<239){
+            return 176;
+        }else if (y>239 && y<=298){
             return 237;
         }else if (y>298 && y<=362){
             return 304;
         }else if (y>362 && y<=426){
             return 369;
-        }
-        return y;
+        }else if (y>426 && y<=490){
+            return 429;
+        }return y;
     }
 
     private double adjustXCoordinate(double x){
@@ -166,6 +169,16 @@ public class Levels_Common_Features {
 
                     if (currentShop.getPlant(2).getAvailabilityStatus())
                         allPlantsOfLevel[2].toBack();
+                }
+            }catch (IndexOutOfBoundsException e1){}
+
+            try{
+                if (Integer.parseInt(numSunTokens.getText()) < 50){
+                    allPlantsOfLevel[3].toFront();
+                }else {
+
+                    if (currentShop.getPlant(3).getAvailabilityStatus())
+                        allPlantsOfLevel[3].toBack();
                 }
             }catch (IndexOutOfBoundsException e1){}
 
@@ -298,9 +311,10 @@ public class Levels_Common_Features {
         }));
 
         Timeline t = new Timeline();
+        Levels_Common_Features.getTimeline().add(t);
         checker = t;
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), check->{
-            for (Zombie z: zombiesOnGrid) {
+            for (Zombie z: getAllZombies()) {
                 if (z.checkIfAlive())
                     checkPlantZombieCollision(z);
             }
@@ -339,8 +353,11 @@ public class Levels_Common_Features {
                     pane.getChildren().remove(zb.getLinkedGUIZombie());
                     zb.killZombie();
                     zb.getWalking().stop();
+
                 }
             }
+
+
         });
         move.getKeyFrames().add(kf);
         tl.getKeyFrames().add(keyFrame);
@@ -405,7 +422,16 @@ public class Levels_Common_Features {
             for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
                 Levels_Common_Features.getTimeline().get(i).stop();
             }
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/gameOverScreen.fxml"));
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
+            Parent root = fl.load();
+
+            if (level == 2){
+                ((Levels_Screen_Controller)fl.getController()).level1_won();
+            }else if (level == 3){
+                ((Levels_Screen_Controller)fl.getController()).level2_won();
+            }else if (level == 4){
+                ((Levels_Screen_Controller)fl.getController()).level3_won();
+            }
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -421,8 +447,6 @@ public class Levels_Common_Features {
         for (Plant p: allCurrent){
             if (p!=null && p.getAliveStatus() && p.getPlantIm().intersects(z.getLinkedGUIZombie().getBoundsInLocal())){
                 z.getWalking().pause();
-             //   KeyFrame k = new KeyFrame(Duration.seconds(1));
-             //   z.getWalking().getKeyFrames().add(k);
                 boolean won = z.attackAPlant(p);
                 if (won){
                     z.getWalking().play();

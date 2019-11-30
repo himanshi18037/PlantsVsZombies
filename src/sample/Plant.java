@@ -30,8 +30,7 @@ public abstract class Plant extends GameCharacters {
        // working.getKeyFrames().add(kf);
         working.stop();
         isAlive = false;
-      //  working.setOnFinished(e->{
-            pane.getChildren().remove(this.plant);
+        pane.getChildren().remove(this.plant);
         //});
     }
 
