@@ -390,7 +390,16 @@ public class Levels_Common_Features {
                 for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
                     Levels_Common_Features.getTimeline().get(i).stop();
                 }
-                Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_1_won.fxml"));
+                Parent root = null;
+                if (level == 1){
+                    root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_1_won.fxml"));
+                }else if(level == 2){
+                    root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_2_won.fxml"));
+                }else if(level == 3){
+                    root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_3_won.fxml"));
+                }else if (level == 4){
+                    root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_4_won.fxml"));
+                }
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
