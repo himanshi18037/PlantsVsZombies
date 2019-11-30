@@ -67,29 +67,4 @@ public abstract class Plant extends GameCharacters {
 
 }
 
-class SunFlower extends Plant{
-
-
-    @Override
-    public void activatePlant(ImageView plant) {
-
-    }
-}
-
-class Stone extends Plant{
-
-    @Override
-    public void activatePlant(ImageView plant) {
-
-    }
-}
-
-class CherryBomb extends Plant{
-
-    @Override
-    public void activatePlant(ImageView plant) {
-
-    }
-}
-
 

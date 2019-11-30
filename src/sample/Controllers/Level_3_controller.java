@@ -2,29 +2,26 @@ package sample.Controllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Level_2_controller implements Initializable {
+public class Level_3_controller implements Initializable {
     private Levels_Common_Features lcf;
-    public AnchorPane pane2;
+    public AnchorPane pane3;
     public Label pointslabel;
     public ImageView peaplantcover;
     public ImageView sunplantcover;
+    public ImageView bombplantcover;
+    public ImageView bombplant;
     public ImageView peaplant;
     public ImageView sunplant;
     public ImageView moverup;
@@ -38,30 +35,19 @@ public class Level_2_controller implements Initializable {
     private Plant currentlySelectedPlant;
     private ImageView[] allPlantCovers;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        allPlantCovers = new ImageView[]{peaplantcover, sunplantcover};
-        lcf = new Levels_Common_Features(pane2);
+        allPlantCovers = new ImageView[]{peaplantcover, sunplantcover,bombplantcover};
+        lcf = new Levels_Common_Features(pane3);
         lcf.droppingSun(pointslabel);
-        lcf.zombie_Move(2);
+        lcf.zombie_Move(3);
         lcf.setProgress();
-        lcf.initialiseLevel(2);
+        lcf.initialiseLevel(3);
         lcf.checkPlantAvailability(allPlantCovers);
-        lcf.setLawnMowers(new LawnMower[]{new LawnMower(moverup), new LawnMower(movercenter), new LawnMower(moverdown)});
     }
-
-
-    public void ingame(MouseEvent mouseEvent) throws IOException, InterruptedException {
-        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
-            Levels_Common_Features.getTimeline().get(i).pause();
-        }
-        ingame.toFront();
-        saveGame.toFront();
-        exit.toFront();
-        backtogame.toFront();
-        mainMenu.toFront();
-
+    public void mowDown(MouseEvent m) {
+        lcf.moveLawnMower(movercenter);
+//        correct it
     }
     public void highlightCell(MouseEvent mouseEvent) {
         Rectangle iv  = (Rectangle)(mouseEvent.getSource());
@@ -72,19 +58,19 @@ public class Level_2_controller implements Initializable {
         Rectangle iv  = (Rectangle)(mouseEvent.getSource());
         iv.setOpacity(0);
     }
-
     public void placesunplant(MouseEvent mouseEvent) {
-        currentlySelectedPlant=new SunFlower(pane2);
+        currentlySelectedPlant=new SunFlower(pane3);
     }
 
-    public void placepeaplant(MouseEvent mouseEvent) {
-        currentlySelectedPlant = new PeaPlant(pane2);
+    public void placePeaPlant(MouseEvent mouseEvent) {
+        currentlySelectedPlant = new PeaPlant(pane3);
     }
-
+    public void placeBombPlant(MouseEvent mouseEvent) {
+        currentlySelectedPlant = new CherryBomb(pane3);
+    }
     public void provideLocation(MouseEvent mouseEvent) {
         boolean success = false;
         if (currentlySelectedPlant!=null) {
-           // System.out.println(mouseEvent.getSceneX() + " " + mouseEvent.getSceneY());
             success = lcf.addAPlant(currentlySelectedPlant, new CellLocation(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
         }
 
@@ -95,9 +81,12 @@ public class Level_2_controller implements Initializable {
 
             if (currentlySelectedPlant.getClass().equals(PeaPlant.class)){
                 cover = allPlantCovers[0];
-            }else {
+            }else if(currentlySelectedPlant.getClass().equals(SunFlower.class))
+            {
                 cover = allPlantCovers[1];
             }
+            else{
+                cover=allPlantCovers[2]; }
 
             cover.toFront();
             Timeline t = new Timeline();
@@ -112,37 +101,20 @@ public class Level_2_controller implements Initializable {
         }
 
     }
-    public void backtogame(MouseEvent mouseEvent) {
-        ingame.toBack();
-        saveGame.toBack();
-        exit.toBack();
-        backtogame.toBack();
-        mainMenu.toBack();
-        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
-            Levels_Common_Features.getTimeline().get(i).play();
-        }
+
+    public void mainMenu(MouseEvent mouseEvent) {
+
     }
 
     public void saveGame(MouseEvent mouseEvent) {
-//        System.out.println("sdfdghgj");
     }
-
-    public void mainMenu(MouseEvent mouseEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
-            Stage stage = (Stage) mainMenu.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-//            System.out.println("weregtrhtjfbgfg");
-
-        }catch (IOException e){
-
-        }
-    }
-
 
     public void exit(MouseEvent mouseEvent) {
     }
 
+    public void backtogame(MouseEvent mouseEvent) {
+    }
 
+    public void ingame(MouseEvent mouseEvent) {
+    }
 }

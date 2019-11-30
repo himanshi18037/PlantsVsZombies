@@ -33,6 +33,10 @@ public class Levels_Common_Features {
     private static ArrayList<Timeline> timelinearray=new ArrayList<Timeline>();
     private LawnMower[] lawnMowers;
     private Timeline checker;
+
+    public static Label getNumSunTokens(){
+        return numSunTokens;
+    }
    
     public static ArrayList<Timeline> getTimeline(){
         return timelinearray;
@@ -65,21 +69,34 @@ public class Levels_Common_Features {
 
         if (type != null){
             int a = ((int) (adjustXCoordinate(location.getX_coordinate()) - 10)/44) - 3;
+            int b = 0;
+            int c = (int) (adjustYCoordinate(location.getY_coordinate()));
+
+            if (c==237){
+                b = 1;
+            }else if(c==304){
+                b = 2;
+            }else if(c==369){
+                b = 3;
+            }
+
+            if (level==2 || level==3){
+                b-=1;
+            }if (level == 1){
+                b = 0;
+            }
+
             if (a>3)
                 a--;
             try{
-                gl.addPlant(0, a, type);
+                gl.addPlant(b, a, type);
             }catch (CellAlreadyOccupiedException e){
                 return false;
             }
             ImageView plant = new ImageView();
             plant.setImage(type.getImage());
             plant.setX(adjustXCoordinate(location.getX_coordinate()));
-            if (level == 1) {
-                plant.setY(304);
-            }else{
-                plant.setY(location.getY_coordinate());
-            }
+            plant.setY(adjustYCoordinate(location.getY_coordinate()));
             type.setPlantIm(plant);
 
             plant.setFitHeight(50);
@@ -91,6 +108,19 @@ public class Levels_Common_Features {
         }
 
         return false;
+    }
+
+    private double adjustYCoordinate(double y){
+        int decideRow[] = {169, 232, 298, 362, 426};
+
+        if (y>239 && y<=298){
+            return 237;
+        }else if (y>298 && y<=362){
+            return 304;
+        }else if (y>362 && y<=426){
+            return 369;
+        }
+        return y;
     }
 
     private double adjustXCoordinate(double x){
@@ -115,6 +145,26 @@ public class Levels_Common_Features {
                 if (currentShop.getPlant(0).getAvailabilityStatus())
                     allPlantsOfLevel[0].toBack();
             }
+            try{
+                if (Integer.parseInt(numSunTokens.getText()) < 50){
+                    allPlantsOfLevel[1].toFront();
+                }else {
+
+                    if (currentShop.getPlant(1).getAvailabilityStatus())
+                        allPlantsOfLevel[1].toBack();
+                }
+            }catch (IndexOutOfBoundsException e1){}
+
+            try{
+                if (Integer.parseInt(numSunTokens.getText()) < 100){
+                    allPlantsOfLevel[2].toFront();
+                }else {
+
+                    if (currentShop.getPlant(2).getAvailabilityStatus())
+                        allPlantsOfLevel[2].toBack();
+                }
+            }catch (IndexOutOfBoundsException e1){}
+
         }));
         t.setCycleCount(Timeline.INDEFINITE);
         t.play();

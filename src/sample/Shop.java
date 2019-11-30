@@ -10,6 +10,17 @@ public class Shop{
             currentlyAvailablePlants = new PlantTags[1];
             currentlyAvailablePlants[0] = new PlantTags("PeaShooter");
         }
+        if(level==2){
+            currentlyAvailablePlants = new PlantTags[2];
+            currentlyAvailablePlants[0] = new PlantTags("PeaShooter");
+            currentlyAvailablePlants[1] = new PlantTags("SunFlower");
+        }
+        if(level==3){
+            currentlyAvailablePlants = new PlantTags[3];
+            currentlyAvailablePlants[0] = new PlantTags("PeaShooter");
+            currentlyAvailablePlants[1] = new PlantTags("SunFlower");
+            currentlyAvailablePlants[2] = new PlantTags("CherryBomb");
+        }
     }
 
     public PlantTags getPlant(int index){
