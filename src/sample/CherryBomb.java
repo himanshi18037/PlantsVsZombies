@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.javafx.collections.MappingChange;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
@@ -8,6 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import sample.Controllers.Levels_Common_Features;
+import sample.Controllers.Levels_Screen_Controller;
+
+import java.util.HashSet;
 
 public class CherryBomb extends Plant{
 
@@ -17,7 +21,8 @@ public class CherryBomb extends Plant{
         super.setImage(new Image("sample/resources/images/plants/cherry_bomb.png"));
         this.setWaitTime(10);
         this.setPlantCost(150);
-
+        this.setHealth(15);
+        this.setAttackPower(10);
         this.setShopTag(2);
     }
     public CherryBomb(AnchorPane pane){
@@ -32,7 +37,7 @@ public class CherryBomb extends Plant{
     public void burst(){
         double time = 5;
         Timeline tl = new Timeline();
-        Levels_Common_Features.getTimeline().add(tl);
+        working = tl;
         Levels_Common_Features.getTimeline().add(tl);
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
 
@@ -44,29 +49,40 @@ public class CherryBomb extends Plant{
             cherry.setFitWidth(70);
             cherry.setFitHeight(70);
 
-            double min_x = plant.getX() +30;
-            int max_x = 700;
+            double min_x = plant.getX();
 
-            cherry.setX(min_x);
-            cherry.setY(plant.getY()+4);
+            cherry.setX(min_x-5);
+            cherry.setY(plant.getY()-5);
+            pane.getChildren().remove(plant);
             pane.getChildren().add(cherry);
-            Timeline timeline = new Timeline();
-            Levels_Common_Features.getTimeline().add(timeline);
 
+            Timeline t = new Timeline();
 
-            cherry.setOnMouseClicked(clicked->{
-                pane.getChildren().remove(cherry);
-
+            KeyFrame kf = new KeyFrame(Duration.seconds(1), e->{
+               // System.out.println("Executing  ");
+                HashSet<Zombie> allZombies = Levels_Common_Features.getAllZombies();
+                for (Zombie z: allZombies){
+                    if (Math.abs(z.getLinkedGUIZombie().getX() - min_x)<75 && Math.abs(z.getLinkedGUIZombie().getY() - cherry.getY())<75){
+                        z.killZombie();
+                        pane.getChildren().remove(z.getLinkedGUIZombie());
+                    }
+                }
             });
 
-
-            timeline.play();
-
+            t.getKeyFrames().add(kf);
+            t.setCycleCount(1);
+            t.play();
+            t.setOnFinished(e->{
+                pane.getChildren().remove(cherry);
+            });
         }));
 
-        tl.setCycleCount(Timeline.INDEFINITE);
+        tl.setCycleCount(1);
         tl.play();
 
+        tl.setOnFinished(e->{
+            Levels_Common_Features.getGl().removePlant(this);
+        });
     }
 
 }

@@ -9,8 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Levels_Screen_Controller {
+public class Levels_Screen_Controller{
 
     public ImageView backButton;
     public ImageView level2_cover;

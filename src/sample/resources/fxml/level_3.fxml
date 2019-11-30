@@ -20,7 +20,7 @@
             <image>
                 <Image url="@../images/level_char_misc/gray_shield.png" />
             </image>
-        </ImageView><ImageView fx:id="ingamebutton" fitHeight="377.0" fitWidth="403.0" layoutX="259.0" layoutY="67.0" onMouseClicked="#ingame">
+        </ImageView><ImageView fx:id="ingamebutton" fitHeight="377.0" fitWidth="403.0" layoutX="259.0" layoutY="67.0">
         <image>
             <Image url="@../images/level_char_misc/Ingame.png" />
         </image>
@@ -34,22 +34,22 @@
                 <Image url="@../images/levels/level2_back.png" />
             </image>
         </ImageView>
-        <Label fx:id="pointslabel" layoutX="25.0" layoutY="85.0" prefHeight="30.0" prefWidth="50.0" text="300">
+        <Label fx:id="pointslabel" layoutX="25.0" layoutY="85.0" prefHeight="30.0" prefWidth="50.0" text="50">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <ImageView fx:id="moverup" fitHeight="48.0" fitWidth="64.0" layoutX="101.0" layoutY="231.0">
+        <ImageView fx:id="moverup" fitHeight="58.0" fitWidth="79.0" layoutX="95.0" layoutY="220.0">
             <image>
                 <Image url="@../images/level_char_misc/Lawn_mower.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="movercenter" fitHeight="48.0" fitWidth="64.0" layoutX="101.0" layoutY="290.0">
+        <ImageView fx:id="movercenter" fitHeight="58.0" fitWidth="79.0" layoutX="86.0" layoutY="283.0">
             <image>
                 <Image url="@../images/level_char_misc/Lawn_mower.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="moverdown" fitHeight="48.0" fitWidth="64.0" layoutX="98.0" layoutY="353.0">
+        <ImageView fx:id="moverdown" fitHeight="58.0" fitWidth="79.0" layoutX="84.0" layoutY="349.0">
             <image>
                 <Image url="@../images/level_char_misc/Lawn_mower.png" />
             </image>
@@ -69,34 +69,34 @@
                 <Image url="@../images/levels/card_sunflower.png" />
             </image>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="159.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="159.0" layoutY="300.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="159.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="210.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="159.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="159.0" layoutY="364.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="159.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="210.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="210.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="261.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="261.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="261.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="312.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="312.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="363.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="312.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="363.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="363.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="414.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="414.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="414.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="465.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="465.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="465.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="516.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="516.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="516.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="567.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="567.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="567.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="209.0" layoutY="367.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="210.0" layoutY="299.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="255.0" layoutY="236.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="258.0" layoutY="301.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="258.0" layoutY="367.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="310.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="311.0" layoutY="301.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="59.0" layoutX="362.0" layoutY="371.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="311.0" layoutY="370.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="360.0" layoutY="236.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="362.0" layoutY="303.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="411.0" layoutY="234.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="411.0" layoutY="304.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="59.0" layoutX="413.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="458.0" layoutY="238.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="461.0" layoutY="302.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="59.0" layoutX="463.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="507.0" layoutY="237.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="510.0" layoutY="303.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="59.0" layoutX="513.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="561.0" layoutY="239.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="65.0" layoutX="566.0" layoutY="305.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1dab56a5" height="59.0" layoutX="566.0" layoutY="372.0" onMouseClicked="#provideLocation" onMouseEntered="#highlightCell" onMouseExited="#removeHighlight" opacity="0.0" stroke="#00000009" strokeType="INSIDE" width="50.0" />
         <ImageView fx:id="bombplantcover" fitHeight="96.0" fitWidth="64.0" layoutX="261.0" layoutY="14.0" opacity="0.74">
             <image>
                 <Image url="@../images/level_char_misc/gray_shield.png" />

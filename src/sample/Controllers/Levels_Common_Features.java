@@ -38,6 +38,9 @@ public class Levels_Common_Features {
     public static Label getNumSunTokens(){
         return numSunTokens;
     }
+    public static GameLayout getGl(){
+        return gl;
+    }
    
     public static ArrayList<Timeline> getTimeline(){
         return timelinearray;
@@ -157,7 +160,7 @@ public class Levels_Common_Features {
             }catch (IndexOutOfBoundsException e1){}
 
             try{
-                if (Integer.parseInt(numSunTokens.getText()) < 100){
+                if (Integer.parseInt(numSunTokens.getText()) < 150){
                     allPlantsOfLevel[2].toFront();
                 }else {
 
@@ -311,21 +314,7 @@ public class Levels_Common_Features {
 
     }
 
-    private Image getPlantImage(String name){
 
-        if (name.equals("peashooter")){
-            return new Image("sample/resources/images/plants/peashooter.gif");
-        }else if (name.equals("walnut")){
-            return new Image("sample/resources/images/plants/potato.png");
-        }else if (name.equals("sunflower")){
-            return new Image("sample/resources/images/plants/sunflower.gif");
-        }else if (name.equals("cherry_bomb")){
-            return new Image("sample/resources/images/plants/cherry_bomb.png");
-        }
-        else {
-            return null;
-        }
-    }
 
     public void moveLawnMower(LawnMower mower, int lane){
 

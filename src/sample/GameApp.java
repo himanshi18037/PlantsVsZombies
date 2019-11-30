@@ -15,7 +15,7 @@ public class GameApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/home_screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/level_4.fxml"));
         primaryStage.setTitle("Plants Vs Zombies");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

@@ -72,4 +72,10 @@ public class GameLayout {
         return allRows[x].getPlantsInRow();
     }
 
+    public void removePlant(Plant p){
+        for (int i = 0; i<allRows.length; i++){
+            allRows[i].removePlant(p);
+        }
+    }
+
 }

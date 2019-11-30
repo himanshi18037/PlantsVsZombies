@@ -2,15 +2,20 @@ package sample.Controllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,6 +49,7 @@ public class Level_3_controller implements Initializable {
         lcf.setProgress();
         lcf.initialiseLevel(3);
         lcf.checkPlantAvailability(allPlantCovers);
+        lcf.setLawnMowers(new LawnMower[]{new LawnMower(moverup), new LawnMower(movercenter), new LawnMower(moverdown)});
     }
 
     public void highlightCell(MouseEvent mouseEvent) {
@@ -62,9 +68,11 @@ public class Level_3_controller implements Initializable {
     public void placePeaPlant(MouseEvent mouseEvent) {
         currentlySelectedPlant = new PeaPlant(pane3);
     }
+
     public void placeBombPlant(MouseEvent mouseEvent) {
         currentlySelectedPlant = new CherryBomb(pane3);
     }
+
     public void provideLocation(MouseEvent mouseEvent) {
         boolean success = false;
         if (currentlySelectedPlant!=null) {
@@ -83,7 +91,8 @@ public class Level_3_controller implements Initializable {
                 cover = allPlantCovers[1];
             }
             else{
-                cover=allPlantCovers[2]; }
+                cover=allPlantCovers[2];
+            }
 
             cover.toFront();
             Timeline t = new Timeline();
@@ -99,19 +108,33 @@ public class Level_3_controller implements Initializable {
 
     }
 
-    public void mainMenu(MouseEvent mouseEvent) {
-
+    public void backtogame(MouseEvent mouseEvent) {
+        ingame.toBack();
+        saveGame.toBack();
+        exit.toBack();
+        backtogame.toBack();
+        mainMenu.toBack();
+        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+            Levels_Common_Features.getTimeline().get(i).play();
+        }
     }
 
     public void saveGame(MouseEvent mouseEvent) {
     }
 
+    public void mainMenu(MouseEvent mouseEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
+            Stage stage = (Stage) mainMenu.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        }catch (IOException e){
+
+        }
+    }
+
     public void exit(MouseEvent mouseEvent) {
     }
-
-    public void backtogame(MouseEvent mouseEvent) {
-    }
-
-    public void ingame(MouseEvent mouseEvent) {
-    }
+    
 }
