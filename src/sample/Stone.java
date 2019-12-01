@@ -66,6 +66,7 @@ public class Stone extends Plant{
                 }
 
                 if (this.getHealth()<=0){
+                    Levels_Common_Features.getGl().removePlant(this);
                     this.killPlant();
                     break;
                 }
