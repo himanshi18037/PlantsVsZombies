@@ -18,6 +18,10 @@ public class Take_name_controller {
     private static String playerName;
 
     public void backToMainMenu(MouseEvent mouseEvent) {
+        if (playerName == null){
+            toMainMenu();
+            return;
+        }
         toMainMenu(this.playerName);
     }
 
@@ -41,6 +45,20 @@ public class Take_name_controller {
             if (!player_name.equals("None")){
                 ((Menu_Screen_Controller)fl.getController()).setPlayerName(player_name);
             }
+            Stage stage = (Stage) back_Button.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+        }catch (IOException e){
+
+        }
+    }
+
+    private void toMainMenu(){
+        try {
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
+            Parent root = fl.load();
             Stage stage = (Stage) back_Button.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
