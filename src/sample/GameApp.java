@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
@@ -23,7 +25,7 @@ public class GameApp extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/home_screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/level_1.fxml"));
         primaryStage.setTitle("Plants Vs Zombies");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -53,7 +55,7 @@ public class GameApp extends Application {
         }
     }
 
-    public static void loadGame(String playerName) throws IOException, ClassNotFoundException {
+    public static void loadGame(String playerName, ImageView pane) throws IOException, ClassNotFoundException {
         ObjectInputStream in = null;
 
         try{
@@ -65,7 +67,7 @@ public class GameApp extends Application {
             }
             in = new ObjectInputStream(new FileInputStream(filename));
             Player p = (Player) in.readObject();
-            p.setUpGame();
+            p.setUpGame(pane);
 
         }finally{
             if (in != null){

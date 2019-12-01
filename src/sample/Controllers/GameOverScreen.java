@@ -14,7 +14,18 @@ public class GameOverScreen {
 
     public void toLevelsScreen(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
+            Parent root = fl.load();
+            int level = Levels_Common_Features.getLevel();
+            if (level == 2){
+                ((Levels_Screen_Controller)fl.getController()).level1_won();
+            }else if (level == 3){
+                ((Levels_Screen_Controller)fl.getController()).level2_won();
+            }else if (level == 4){
+                ((Levels_Screen_Controller)fl.getController()).level3_won();
+            }else if (level == 5){
+                ((Levels_Screen_Controller)fl.getController()).level4_won();
+            }
             Stage stage = (Stage) continuationButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

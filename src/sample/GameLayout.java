@@ -11,6 +11,10 @@ public class GameLayout implements Serializable {
     private LawnMower mowers[];
     private int numSunTokens;
 
+    public int getNumSunTokens(){
+        return numSunTokens;
+    }
+
     public void updateZombieLocations() {
         for (int i = 0; i<allRows.length; i++){
             ArrayList<Zombie> allZb =  allRows[i].getAllZombies();
@@ -82,6 +86,10 @@ public class GameLayout implements Serializable {
             return allZombies;
         }
 
+    }
+
+    public ArrayList<Zombie> getAllZombies(int i){
+        return allRows[i].getAllZombies();
     }
 
     public GameLayout(int level){

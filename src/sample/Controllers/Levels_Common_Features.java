@@ -45,6 +45,10 @@ public class Levels_Common_Features {
     public static int getLevel(){
         return level;
     }
+
+    public void setNumSunTokens(int i){
+        numSunTokens.setText(Integer.toString(i));
+    }
    
     public static ArrayList<Timeline> getTimeline(){
         return timelinearray;
@@ -58,6 +62,10 @@ public class Levels_Common_Features {
         level = l;
         gl = new GameLayout(level);
         currentShop = new Shop(level);
+    }
+
+    public void setGameLayout(GameLayout gl){
+        this.gl = gl;
     }
 
     public void setLawnMowers(LawnMower[] lm){
@@ -241,6 +249,100 @@ public class Levels_Common_Features {
 
     }
 
+    public void addFlyingZombie(){
+        int time = 20;
+
+        int min_x = 300;
+        int max_x = 560;
+
+        int [] y_pos = new int[]{147, 206, 269, 338, 403};
+
+
+
+        AudioClip zombieReleased  = new AudioClip(new File("src/sample/resources/soundClips/groan.wav").toURI().toString());
+        //     AudioClip zombieWalks = new AudioClip(new File("src/sample/resources/soundClips/grasswalk.wav").toURI().toString());
+        AudioClip zombiesComing = new AudioClip(new File("src/sample/resources/soundClips/zombie_wave.wav").toURI().toString());
+
+
+        Timeline tl = new Timeline();
+        timelinearray.add(tl);
+        tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
+            ImageView zomb = new ImageView();
+            zomb.setImage(new Image("sample/resources/images/zombies/flyingZombie.gif"));
+
+            Random rand = new Random();
+            Random r = new Random();
+            int lnum = rand.nextInt(y_pos.length);
+            int y_stop_coord = y_pos[lnum];
+
+
+            int x_coord = rand.nextInt(max_x-min_x+1) + min_x;
+
+            zomb.setX(x_coord);
+            zomb.setY(0);
+            zomb.setFitWidth(45);
+            zomb.setFitHeight(80);
+
+            Zombie z = new Zombie(zomb, lnum+1);
+            gl.addZombie(z,lnum);
+
+
+            zombiesOnGrid.add(z);
+            zombieReleased.play();
+
+            pane.getChildren().add(zomb);
+
+            Timeline timeline = new Timeline();
+            timelinearray.add(timeline);
+            z.setWalking(timeline);
+            KeyValue kv = new KeyValue(zomb.yProperty(), y_stop_coord);
+            KeyFrame kf = new KeyFrame(Duration.seconds(5), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+
+            timeline.setOnFinished(e->{
+//                System.out.println("playing");
+                Timeline tm = new Timeline();
+                timelinearray.add(tm);
+                z.setWalking(tm);
+
+                KeyValue kv1 = new KeyValue(zomb.xProperty(), 125);
+                KeyFrame kf1 = new KeyFrame(Duration.seconds(15),e1-> {
+                    //              zombieWalks.play();
+                    try {
+//                    zombieWalks.stop();
+                        if (zomb.getX() <= 125 && z.checkIfAlive()) {
+                            if (!lawnMowers[z.getLane()-1].getActiveStatus()){
+                                lawnMowers[z.getLane()-1].changeActiveStatus();
+                                moveLawnMower(lawnMowers[z.getLane()-1], z.getLane());
+                            }else if (z.checkIfAlive()){
+                                throw new HomeInvadedException();
+                            }
+                        }
+                    }catch (HomeInvadedException e2){
+                        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+                            Levels_Common_Features.getTimeline().get(i).stop();
+                        }
+
+                        this.gameLost();
+                    }
+
+
+                }, kv1);
+                tm.getKeyFrames().add(kf1);
+                tm.play();
+
+
+            });
+
+
+
+        }));
+
+        tl.setCycleCount(Timeline.INDEFINITE);
+        tl.play();
+    }
+
     public void zombie_Move(int level){
         int time = 10;
 
@@ -263,12 +365,13 @@ public class Levels_Common_Features {
         timelinearray.add(tl);
         tl.getKeyFrames().add(new KeyFrame(Duration.seconds(time), actionEvent -> {
             ImageView zombie = new ImageView();
+            Random rand = new Random();
             zombie.setImage(new Image("sample/resources/images/zombies/Zombieidle.gif"));
 
             zombie.setFitHeight(76);
             zombie.setFitWidth(61);
 
-            Random rand = new Random();
+
 
             int lnum = rand.nextInt(y_pos.length);
             int y_stop_coord = y_pos[lnum];
@@ -428,16 +531,18 @@ public class Levels_Common_Features {
             for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
                 Levels_Common_Features.getTimeline().get(i).stop();
             }
-            FXMLLoader fl = new FXMLLoader(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("../resources/fxml/gameOverScreen.fxml"));
             Parent root = fl.load();
 
-            if (level == 2){
-                ((Levels_Screen_Controller)fl.getController()).level1_won();
-            }else if (level == 3){
-                ((Levels_Screen_Controller)fl.getController()).level2_won();
-            }else if (level == 4){
-                ((Levels_Screen_Controller)fl.getController()).level3_won();
-            }
+//            if (level == 2){
+//                ((Levels_Screen_Controller)fl.getController()).level1_won();
+//            }else if (level == 3){
+//                ((Levels_Screen_Controller)fl.getController()).level2_won();
+//            }else if (level == 4){
+//                ((Levels_Screen_Controller)fl.getController()).level3_won();
+//            }else if (level == 5){
+//                ((Levels_Screen_Controller)fl.getController()).level4_won();
+//            }
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

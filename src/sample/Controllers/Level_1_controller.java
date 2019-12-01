@@ -124,6 +124,7 @@ public class Level_1_controller implements Initializable {
             Levels_Common_Features.getTimeline().get(i).stop();
         }
         GameApp.saveGame();
+        System.exit(0);
     }
 
     public void mainMenu(MouseEvent mouseEvent) {
@@ -154,6 +155,26 @@ public class Level_1_controller implements Initializable {
 
         }catch (IOException e){
 
+        }
+    }
+
+    public void setUp(Player player) {
+        lcf.initialiseLevel(1);
+        GameLayout gl = player.getGL();
+        lcf.setNumSunTokens(gl.getNumSunTokens());
+        lcf.setGameLayout(gl);
+
+        Plant[] p = gl.getAllPlantsInRow(0);
+
+        for (Plant plant: p){
+            if (plant.getAliveStatus()){
+                ImageView iv = new ImageView();
+                iv.setX(plant.getLocation().getX_coordinate());
+                iv.setY(plant.getLocation().getY_coordinate());
+                iv.setImage(plant.getImage());
+                pane.getChildren().add(iv);
+                plant.activatePlant(iv);
+            }
         }
     }
 }

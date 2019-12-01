@@ -38,6 +38,10 @@ public abstract class Plant extends GameCharacters {
         //});
     }
 
+    public CellLocation getLocation(){
+        return this.location;
+    }
+
     public boolean getAliveStatus(){
         return isAlive;
     }

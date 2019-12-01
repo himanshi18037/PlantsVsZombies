@@ -122,7 +122,12 @@ public class Level_2_controller implements Initializable {
         }
     }
 
-    public void saveGame(MouseEvent mouseEvent) {
+    public void saveGame(MouseEvent mouseEvent) throws IOException {
+        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
+            Levels_Common_Features.getTimeline().get(i).stop();
+        }
+        GameApp.saveGame();
+        System.exit(0);
     }
 
     public void mainMenu(MouseEvent mouseEvent) {

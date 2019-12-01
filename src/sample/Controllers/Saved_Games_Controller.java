@@ -7,12 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.GameApp;
 
 import java.io.IOException;
 
 public class Saved_Games_Controller {
 
+    public AnchorPane pane;
     @FXML
     private ImageView back_button;
 
@@ -29,5 +32,9 @@ public class Saved_Games_Controller {
 //
         }
 
+    }
+
+    public void load(MouseEvent mouseEvent) throws IOException, ClassNotFoundException{
+        GameApp.loadGame("vibhu", back_button);
     }
 }

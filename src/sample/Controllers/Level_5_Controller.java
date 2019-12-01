@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Level_4_Controllers implements Initializable {
+public class Level_5_Controller implements Initializable {
     public ImageView mover1;
     public ImageView mover2;
     public ImageView mover3;
@@ -52,12 +52,13 @@ public class Level_4_Controllers implements Initializable {
         allPlantCovers = new ImageView[]{peaplantcover, sunplantcover,bombplantcover,stoneplantcover};
         lcf = new Levels_Common_Features(pane4);
         lcf.droppingSun(pointslabel);
-        lcf.zombie_Move(4);
+        lcf.zombie_Move(5);
         lcf.setProgress();
-        lcf.initialiseLevel(4);
+        lcf.initialiseLevel(5);
         lcf.checkPlantAvailability(allPlantCovers);
         lcf.setLawnMowers(new LawnMower[]{new LawnMower(mover1), new LawnMower(mover2),
                 new LawnMower(mover3), new LawnMower(mover4), new LawnMower(mover5)});
+        lcf.addFlyingZombie();
     }
 
     public void highlightCell(MouseEvent mouseEvent) {
@@ -84,7 +85,7 @@ public class Level_4_Controllers implements Initializable {
 
     public void provideLocation(MouseEvent mouseEvent) {
         boolean success = false;
-       if (currentlySelectedPlant!=null) {
+        if (currentlySelectedPlant!=null) {
             success = lcf.addAPlant(currentlySelectedPlant, new CellLocation(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
         }
 
@@ -143,7 +144,7 @@ public class Level_4_Controllers implements Initializable {
             for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
                 Levels_Common_Features.getTimeline().get(i).stop();
             }
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_5.fxml" ));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/level_4.fxml" ));
             Stage stage = (Stage) pane4.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
