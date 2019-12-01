@@ -283,7 +283,7 @@ public class Levels_Common_Features {
             zomb.setFitWidth(45);
             zomb.setFitHeight(80);
 
-            Zombie z = new Zombie(zomb, lnum+1);
+            Zombie z = new FlyingZombie(zomb, lnum+1);
             gl.addZombie(z,lnum);
 
 

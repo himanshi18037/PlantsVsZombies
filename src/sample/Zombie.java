@@ -50,8 +50,5 @@ public class Zombie extends GameCharacters{
         }return true;
     }
 
-    public void move(){
-
-    }
 
 }
