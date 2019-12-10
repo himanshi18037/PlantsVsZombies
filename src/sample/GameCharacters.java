@@ -2,13 +2,17 @@ package sample;
 
 import javafx.scene.image.Image;
 
-public abstract class GameCharacters {
+import java.io.Serializable;
+
+public abstract class GameCharacters implements Serializable {
     private int health;
     private int attackPower;
-    private int rowNum;
-    private int colNum;
+    protected CellLocation location;
+    private transient Image image;
 
-    private Image image;
+    public void setLocation(double x, double y){
+        location = new CellLocation(x,y);
+    }
 
     protected void setHealth(int health){
         this.health = health;
@@ -18,16 +22,18 @@ public abstract class GameCharacters {
         this.attackPower = power;
     }
 
-    protected void setRowNum(int row){
-        this.rowNum = row;
-    }
 
-    protected void setColNum(int col){
-        this.colNum = col;
-    }
+    protected int attack(GameCharacters character){
+        int a1 = this.health - character.attackPower;
+        int a2 = character.health - this.attackPower;
 
-    protected void attack(GameCharacters character){
-        character.isAttacked(attackPower);
+        if (a1>a2){
+            this.health = a1;
+            return 1;
+        }
+
+        character.health = a2;
+        return 2;
     }
 
     protected void isAttacked(int pow){
@@ -40,6 +46,10 @@ public abstract class GameCharacters {
 
     protected void setImage(Image i){
         image = i;
+    }
+
+    public int getHealth(){
+        return this.health;
     }
 
 }

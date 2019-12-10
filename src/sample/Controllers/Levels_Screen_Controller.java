@@ -9,10 +9,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Levels_Screen_Controller {
+public class Levels_Screen_Controller{
 
     public ImageView backButton;
+    public ImageView level2_cover;
+    public ImageView level3_cover;
+    public ImageView level4_cover;
+    public ImageView level5_cover;
+
     @FXML
     private ImageView l1;
     @FXML
@@ -23,6 +29,26 @@ public class Levels_Screen_Controller {
     private ImageView l4;
     @FXML
     private ImageView l5;
+
+    public void level1_won(){
+        level2_cover.toBack();
+    }
+
+    public void level2_won(){
+        level1_won();
+        level3_cover.toBack();
+    }
+
+    public void level3_won(){
+        level2_won();
+        level4_cover.toBack();
+    }
+
+    public void level4_won(){
+        level3_won();
+        level5_cover.toBack();
+    }
+
 
     private void getLevel(int level_num){
         try {

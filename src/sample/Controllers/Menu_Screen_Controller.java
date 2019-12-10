@@ -8,21 +8,29 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import sample.GameApp;
+import sample.Plant;
+import sample.Player;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Menu_Screen_Controller {
-
+    public Label nonamelabel;
     public Label player;
     @FXML
     private ImageView resume_game_button;
 
     public void setPlayerName(String s){
         player.setText(s);
+        Player p;
+        if (GameApp.getPlayer()!=null){
+            p = GameApp.getPlayer();
+        }else {
+            p = new Player(s);
+            GameApp.setPlayer(p);
+        }
+
     }
 
     public void newGame(MouseEvent mouseEvent) {
@@ -55,10 +63,16 @@ public class Menu_Screen_Controller {
 
     public void levels_screen(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
-            Stage stage = (Stage) resume_game_button.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            if(player.getText().equals("Player Name")){
+                nonamelabel.toFront();
+            }
+            else{
+                Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/levels_Screen.fxml"));
+                Stage stage = (Stage) resume_game_button.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+
 
         }catch (IOException e){
 
