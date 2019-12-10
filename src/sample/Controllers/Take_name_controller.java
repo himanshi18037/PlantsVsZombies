@@ -18,10 +18,13 @@ public class Take_name_controller {
     private static String playerName;
 
     public void backToMainMenu(MouseEvent mouseEvent) {
+<<<<<<< HEAD
         if (playerName == null){
             toMainMenu();
             return;
         }
+=======
+>>>>>>> master
         toMainMenu(this.playerName);
     }
 
