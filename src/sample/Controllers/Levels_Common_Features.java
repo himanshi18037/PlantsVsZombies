@@ -16,14 +16,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.*;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.util.ArrayList;
-=======
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
->>>>>>> master
 import java.io.File;
 import java.util.HashSet;
 import java.util.Random;
@@ -33,7 +27,6 @@ public class Levels_Common_Features {
 
     private static HashSet<Zombie> zombiesOnGrid = new HashSet<>();
     private static AnchorPane pane;
-<<<<<<< HEAD
     private static int level;
     private static GameLayout gl;
     private static Label numSunTokens;
@@ -57,14 +50,10 @@ public class Levels_Common_Features {
         numSunTokens.setText(Integer.toString(i));
     }
    
-=======
-    private static ArrayList<Timeline> timelinearray=new ArrayList<Timeline>();
->>>>>>> master
     public static ArrayList<Timeline> getTimeline(){
         return timelinearray;
     }
 
-<<<<<<< HEAD
     public Shop.PlantTags getPlantFromShop(int num){
         return currentShop.getPlant(num);
     }
@@ -88,9 +77,6 @@ public class Levels_Common_Features {
         return zombiesOnGrid;
     }
 
-=======
-    int level;
->>>>>>> master
 
     Levels_Common_Features(AnchorPane pane){
         this.pane = pane;
@@ -401,10 +387,7 @@ public class Levels_Common_Features {
 
             Timeline timeline = new Timeline();
             timelinearray.add(timeline);
-<<<<<<< HEAD
             z.setWalking(timeline);
-=======
->>>>>>> master
             KeyValue kv = new KeyValue(zombie.xProperty(), 125);
             KeyFrame kf = new KeyFrame(Duration.seconds(30),e-> {
   //              zombieWalks.play();
@@ -459,18 +442,11 @@ public class Levels_Common_Features {
         ImageView mowerImg = mower.getLawnMower();
         Timeline move = new Timeline();
         timelinearray.add(move);
-<<<<<<< HEAD
         KeyValue kv = new KeyValue(mowerImg.xProperty(), 650);
         KeyFrame kf = new KeyFrame(Duration.seconds(7), mow->{
 
             if (mowerImg.getX() > 600){
                 pane.getChildren().remove(mowerImg);
-=======
-        KeyValue kv = new KeyValue(mower.xProperty(), 650);
-        KeyFrame kf = new KeyFrame(Duration.seconds(5), mow->{
-            if (mower.getX() > 600){
-                pane.getChildren().remove(mower);
->>>>>>> master
             }
         }, kv);
 
@@ -516,10 +492,6 @@ public class Levels_Common_Features {
 
         Timeline t = new Timeline();
         timelinearray.add(t);
-<<<<<<< HEAD
-=======
-
->>>>>>> master
         KeyValue kv = new KeyValue(iv.fitWidthProperty(), 240);
         t.getKeyFrames().add(new KeyFrame(Duration.minutes(3), kv));
         t.play();

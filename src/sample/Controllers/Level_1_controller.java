@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,38 +20,25 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-<<<<<<< HEAD
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-=======
-import java.util.ArrayList;
->>>>>>> master
 
 public class Level_1_controller implements Initializable {
-    
+
     @FXML
     public ImageView menu_b;
     @FXML
     public AnchorPane pane;
     public ImageView mower_center;
     public Label num_sun;
-<<<<<<< HEAD
     public ImageView plant_cover_pea;
     public ImageView ingame;
-=======
-    public ImageView ingame;
-    public Rectangle saveGame;
-    public Rectangle exit;
-    public Rectangle backtogame;
-    public Rectangle mainMenu;
->>>>>>> master
     private Levels_Common_Features lcf;
     private Plant currentlySelectedPlant;
     public Rectangle saveGame;
@@ -72,7 +58,6 @@ public class Level_1_controller implements Initializable {
         lcf.setLawnMowers(new LawnMower[]{new LawnMower(mower_center)});
     }
 
-<<<<<<< HEAD
 
     public void invokeMenu(MouseEvent mouseEvent){
         for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
@@ -83,20 +68,6 @@ public class Level_1_controller implements Initializable {
         exit.toFront();
         backtogame.toFront();
         mainMenu.toFront();
-=======
-    public void invokeMenu(MouseEvent mouseEvent) throws IOException, InterruptedException {
-        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
-            Levels_Common_Features.getTimeline().get(i).pause();
-        }
-        ingame.toFront();
-        saveGame.toFront();
-        exit.toFront();
-        backtogame.toFront();
-        mainMenu.toFront();
-
-
-
->>>>>>> master
 
     }
 
@@ -205,40 +176,5 @@ public class Level_1_controller implements Initializable {
                 plant.activatePlant(iv);
             }
         }
-    }
-
-    public void backtogame(MouseEvent mouseEvent) {
-        System.out.println("back to gameeeee");
-        ingame.toBack();
-        saveGame.toBack();
-        exit.toBack();
-        backtogame.toBack();
-        mainMenu.toBack();
-        for(int i=0;i<Levels_Common_Features.getTimeline().size();i++){
-            Levels_Common_Features.getTimeline().get(i).play();
-        }
-
-
-    }
-
-    public void saveGame(MouseEvent mouseEvent) {
-        System.out.println("sdfdghgj");
-    }
-
-    public void mainMenu(MouseEvent mouseEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/Menu_Screen.fxml"));
-            Stage stage = (Stage) mainMenu.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-            System.out.println("weregtrhtjfbgfg");
-
-        }catch (IOException e){
-
-        }
-    }
-
-
-    public void exit(MouseEvent mouseEvent) {
     }
 }
